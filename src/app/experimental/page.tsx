@@ -16,6 +16,7 @@ const Experimental: FunctionComponent<ExperimentalProps> = () => {
       const div = headerRef.current;
       // @ts-ignore
       setWidth(div.getBoundingClientRect().width);
+      // console.log(div.getBoundingClientRect().width);
     }
   }, [headerRef]);
   return (
@@ -38,16 +39,7 @@ const Experimental: FunctionComponent<ExperimentalProps> = () => {
           </div>
           {/* i don't know */}
           <div></div>
-          {/* chilling */}
-          <div className="cubeContainer">
-            <div className="w-28 text-background bg-foreground h-20 front"></div>
-            <div className="w-5 text-background bg-foreground h-20 left"></div>
-            <div
-              className={`w-28 text-background bg-foreground h-5 top flex items-center justify-center ${nova.className}`}
-            >
-              CHILLING
-            </div>
-          </div>
+
           {/* schedule */}
           <div className="flex flex-row gap-6">
             <div className="flex-col flex ">
@@ -61,16 +53,53 @@ const Experimental: FunctionComponent<ExperimentalProps> = () => {
               <p>SLEEP</p>
             </div>
           </div>
-
+          {/* chilling */}
+          <div className="translate-x-10 px-10 -translate-y-8">
+            <div className="w-28 text-background bg-foreground h-20 front"></div>
+            <div className="w-5 text-background bg-foreground h-20 left"></div>
+            <div
+              className={`w-28 text-background bg-foreground h-5 top flex items-center justify-center ${nova.className}`}
+            >
+              CHILLING
+            </div>
+          </div>
           {/* sphere */}
-          <Image
-            src={"/Sphere_wireframe.svg"}
-            alt="sphere"
-            color="background"
-            width={20}
-            height={10}
-          />
+          <div className="rotate-[-20deg]">
+            <Image
+              src="/Sphere_wireframe.svg"
+              alt="sphere"
+              width={100}
+              height={100}
+            />
+          </div>
+          {/* description */}
+          <div className="w-64 text-sm text-justify tracking-widest">
+            A SERIES OF THOUGHTS, IMAGES, AND SENSATIONS OCCURING IN MIND
+          </div>
+
+          {/* barcode */}
+          <div className="flex flex-row">
+            {Array.from({ length: 20 }).map((_, i) => {
+              const randomWidth = Math.floor(Math.random() * (15 - 4) + 4);
+              return (
+                <div
+                  key={i}
+                  style={{
+                    width: `${randomWidth}px`,
+                    marginLeft: `${5}px`,
+                  }}
+                  className={`h-10 bg-foreground`}
+                ></div>
+              );
+            })}
+          </div>
         </div>
+        <div className="w-full  text-center [word-spacing:200px]">
+          YOU MUST REALIZE THEM IF YOU WANT TO TOUCH HAPPINESS IN YOUR LIFE
+        </div>
+      </div>
+      <div className="min-h-[100%]">
+        <p>WEBSITES SO GOOD YOU WANNA PUT THEM ON A SHIRT &#169;</p>
       </div>
     </div>
   );
