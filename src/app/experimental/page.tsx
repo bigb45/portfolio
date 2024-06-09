@@ -16,29 +16,28 @@ const Experimental: FunctionComponent<ExperimentalProps> = () => {
       const div = headerRef.current;
       // @ts-ignore
       setWidth(div.getBoundingClientRect().width);
-      // console.log(div.getBoundingClientRect().width);
+      // @ts-ignore
+      console.log(div.getBoundingClientRect().width);
     }
   }, [headerRef]);
   return (
     <div className="select-none flex flex-col h-full w-full  min-h-screen items-center p-24 text-foreground bg-background">
       <div
-        className={`header min-w-fit  flex flex-col justify-center items-center`}
+        className={`header  flex flex-col justify-center items-center`}
         ref={headerRef}
       >
         <p className="text-[64px] font-extrabold  scale-x-[6] scale-y-[2] tracking-[-2px] text-center">
           DREAM
         </p>
         <div
-          className={`flex flex-row justify-between`}
-          style={{ width: width * 6 }}
+          className={`flex flex-row justify-between gap-10`}
+          style={{ width: width }}
         >
           {/* No 88 */}
           <div className="flex space-x-4 text-[64px]">
             <div className="italic">N°</div>
             <div>88</div>
           </div>
-          {/* i don't know */}
-          <div></div>
 
           {/* schedule */}
           <div className="flex flex-row gap-6">
