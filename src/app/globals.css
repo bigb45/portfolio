@@ -31,3 +31,26 @@ body {
     text-wrap: balance;
   }
 }
+
+.front {
+  transform-origin: 100% 100%;
+  transform: skewX(60deg) scaleY(0.5);
+}
+
+.left {
+  transform-origin: 0 0;
+
+  transform: rotate(90deg) skewX(-30deg) scaleY(0.866);
+}
+
+.top {
+  transform-origin: 0 0;
+  transform: translateY(-400%);
+}
+
+.cube-container {
+  perspective: 1000px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
