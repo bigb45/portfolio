@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  .pressedShadow {
+    box-shadow:
+      inset 3px 0px 0px rgb(0, 0, 0),
+      inset 0px 3px 0px rgb(0, 0, 0),
+      inset -3px -3px 0px rgb(255, 255, 255),
+      0px -0px 0px 1px #7a7a7a;
+  }
+
+  .defaultShadow {
+    box-shadow:
+      inset 0px 3px 0px rgb(255, 255, 255),
+      inset 3px 0px 0px rgb(255, 255, 255),
+      inset -3px 0px 0px #7a7a7a,
+      inset 0px -3px 0px #7a7a7a,
+      0px -0px 0px 1px #7a7a7a;
+  }
+
+  .focused {
+    border: 2px dashed #000;
+  }
+
+  .disabled {
+    color: #7a7a7a;
+  }
+}

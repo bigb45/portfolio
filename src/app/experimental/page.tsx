@@ -26,11 +26,11 @@ const Experimental: FunctionComponent<ExperimentalProps> = () => {
         className={`header  flex flex-col justify-center items-center`}
         ref={headerRef}
       >
-        <p className="text-[64px] font-extrabold  scale-x-[6] scale-y-[2] tracking-[-2px] text-center">
+        <p className=" sm:text-[32px]  md:text-[32px] lg:text-[82px] font-extrabold  scale-x-[6] scale-y-[2] tracking-[-2px] text-center">
           DREAM
         </p>
         <div
-          className={`flex flex-row justify-between gap-10`}
+          className={`flex flex-row justify-between mt-4`}
           style={{ width: width }}
         >
           {/* No 88 */}
