@@ -11,8 +11,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#f8e7cd",
+        background: "#b8b8b8",
         foreground: "#a0beb4",
+        accent: "#000072",
+        "accent-light": "#AECAE2",
+        "on-accent": "#ffffff",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
