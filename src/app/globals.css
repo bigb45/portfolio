@@ -54,3 +54,9 @@ body {
   height: 200px;
   position: relative;
 }
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0px 2px #000;
+  }
+}
