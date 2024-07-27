@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import "../styles/button.css";
+import "../../styles/button.css";
 
 interface IconButtonProps {
   state: "enabled" | "disabled" | "focused" | "highlighted";

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,6 +58,6 @@ body {
 
 @layer utilities {
   .text-shadow {
-    text-shadow: 0px 2px #000;
+    text-shadow: px 2px #000;
   }
 }

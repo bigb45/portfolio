@@ -1,7 +1,7 @@
 "use client";
 import "xp.css/dist/XP.css";
-import Button from "../components/Button";
-import Dialog from "../components/Dialog";
+import Button from "../desktop/components/Button";
+import Dialog from "../desktop/components/Dialog";
 function Library() {
   function onClose() {}
   function lineBreak(message: string) {

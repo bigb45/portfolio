@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .waving-hand {
+    transform-origin: 50px 50px;
+    animation: waving 1s;
+  }
+
+  @keyframes waving {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(20deg);
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+    75% {
+      transform: rotate(20deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .fading-text {
+    animation: fade 2s;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 1;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+}
