@@ -10,6 +10,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        w95fa: ["w95fa", "sans-serif"],
+        grotesk: ['"Space Grotesk"', "Inter"],
+      },
       colors: {
         background: "#b8b8b8",
         foreground: "#a0beb4",

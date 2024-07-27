@@ -1,27 +1,32 @@
 import Image from "next/image";
-import { useState } from "react";
-
 interface DesktopItemProps {
+  className?: string;
+  id: string;
   icon: string;
   title: string;
-  onClick: () => void;
+  isSelected: boolean;
+  onClick: (id: string) => void;
+  onDoubleClick: (id: string) => void;
 }
 
 export default function DesktopItem({
+  id,
   icon,
   title,
+  isSelected,
   onClick,
+  className,
+  onDoubleClick,
 }: DesktopItemProps) {
-  const [isSelected, setIsSelected] = useState(false);
   return (
     <div
       onClick={() => {
-        setIsSelected(!isSelected);
+        onClick(id);
       }}
       onDoubleClick={() => {
-        onClick();
+        onDoubleClick(id);
       }}
-      className="select-none drag-none cursor-pointer"
+      className={`${className} select-none drag-none cursor-pointer`}
     >
       <div
         className={`flex flex-col items-center justify-center py-1 px-2 gap-y-2 `}

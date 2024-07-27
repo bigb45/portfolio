@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import "../styles/button.css";
+import "../../styles/button.css";
 
 interface ButtonProps {
   state: "enabled" | "disabled" | "focused" | "highlighted";
