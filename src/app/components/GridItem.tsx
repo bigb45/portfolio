@@ -1,46 +1,78 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
-
+/* eslint-disable @next/next/no-img-element */
+import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
+import { FaGithub } from "react-icons/fa";
+import BrutalistButton from "./BrutalistButton";
+import { ProjectData } from "./Projects";
 
-function GridItem() {
-  const [selectedId, setSelectedId] = useState<string>("");
-  const items = [
-    { id: "1", title: "First", subtitle: "First" },
-    { id: "2", title: "Second", subtitle: "Second" },
-    { id: "3", title: "Third", subtitle: "Third" },
-  ];
+interface GridItemProps extends ProjectData {
+  onExitProject: () => void;
+}
+
+function GridItem({
+  title,
+  subtitle,
+  imageUrl,
+  description,
+  githubLink,
+  onExitProject,
+}: GridItemProps) {
+  const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="relative grid grid-cols-3 grid-rows-1 ">
-      {items.map((item, index) => (
-        <motion.div
-          // onHoverStart={}
-          className="cursor-pointer border-black bg-black border-2 w-80 h-80 hover:translate-x-[-10px] hover:translate-y-[-10px]  transition-all duration-200 flex justify-center items-center text-white overflow-hidden  "
-          key={index}
-          layoutId={item.id}
-          onClick={() => setSelectedId(item.id)}
+    <div className="p-5 flex h-full flex-row cursor-default text-black ">
+      <motion.div
+        // animate={{
+        //   boxShadow: !isClicked
+        //     ? "10px 10px 0px rgba(0, 0, 0, 1)"
+        //     : "0px 0px 0px rgba(0, 0, 0, 0)",
+        // }}
+        whileTap={{ x: 10, y: 10 }}
+        onMouseDown={() => setIsClicked(true)}
+        onMouseUp={() => setIsClicked(false)}
+        className="flex-1 p-4 h-full bg-[#f8f8f8] border-black border-2 shadow-[10px_10px_0px_0px_#000] mx-4"
+      >
+        <Link
+          target="_blank"
+          href={githubLink ?? ""}
+          className="items-center justify-center flex h-full w-full"
         >
-          <img src="images/practice.png" />
-        </motion.div>
-      ))}
+          <img
+            alt="project"
+            src={imageUrl}
+            className=" cursor-pointer transition-all duration-200 object-scale-down h-full"
+          />
+        </Link>
+      </motion.div>
 
-      <AnimatePresence>
-        {selectedId && (
-          <motion.div
-            // transition={}
-            layoutId={selectedId}
-            className="cursor-pointer absolute border-black bg-black border-2 w-full h-full flex justify-center items-center text-white overflow-hidden "
-          >
-            <motion.button
-              className="absolute h-10 w-10 text-6xl text-black"
-              onClick={() => setSelectedId("")}
+      <div className="flex-1 px-4">
+        <div className="text-6xl font-bold">{title}</div>
+        <div className="text-xl mb-4">{subtitle}</div>
+        <div className="mb-10">{description}</div>
+        Check it out here
+        <div>
+          {githubLink && (
+            <Link
+              className="inline-flex"
+              href={githubLink ?? ""}
+              target="_blank"
             >
-              x
-            </motion.button>
-            <img src="images/practice.png" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <div className="hover:underline decoration-wavy flex underline-offset-4 flex-row items-center w-fit py-4">
+                <FaGithub size={32} />
+
+                {githubLink?.split("github.com")[1]}
+              </div>
+            </Link>
+          )}
+        </div>
+        <div className="flex flex-row justify-end">
+          <BrutalistButton
+            text={"GO BACK"}
+            onClick={onExitProject}
+          ></BrutalistButton>
+        </div>
+      </div>
     </div>
   );
 }

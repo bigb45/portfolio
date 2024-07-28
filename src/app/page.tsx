@@ -1,31 +1,40 @@
-import GridItem from "./components/GridItem";
 import Header from "./components/Header";
+import { Projects } from "./components/Projects";
 import WavingHand from "./components/WavingHand";
 export default function Home() {
   const projects = [
     {
-      name: "Project 1",
+      id: "1",
+      title: "AZ English",
+      subtitle: "A cross-platform mobile application for learning English",
+      description:
+        "AZ English is a cross-platform mobile application for learning English. It is built using Flutter and Firebase. The application is designed to help users learn English by providing them with a variety of features such as quizzes, flashcards, and more. The application also includes a social feature that allows users to connect with other learners and practice their English skills together.",
+      imageUrl: "/images/practice.png",
+      githubLink: "https://github.com/bigb45/az-english/",
+    },
+    {
+      id: "2",
+      title: "",
+      subtitle: "This is a description of project 1",
       description: "This is a description of project 1",
-      image: "https://via.placeholder.com/150",
-      link: "https://example.com",
+      imageUrl: "/images/practice.png",
+      githubLink: "https://example.com",
     },
     {
-      name: "Project 2",
-      description: "This is a description of project 2",
-      image: "https://via.placeholder.com/150",
-      link: "https://example.com",
+      id: "3",
+      title: "Project 1",
+      subtitle: "This is a description of project 1",
+      description: "This is a description of project 1",
+      imageUrl: "/images/practice.png",
+      githubLink: "https://example.com",
     },
     {
-      name: "Project 3",
-      description: "This is a description of project 3",
-      image: "https://via.placeholder.com/150",
-      link: "https://example.com",
-    },
-    {
-      name: "Project 4",
-      description: "This is a description of project 4",
-      image: "https://via.placeholder.com/150",
-      link: "https://example.com",
+      id: "4",
+      title: "Project 1",
+      subtitle: "This is a description of project 1",
+      description: "This is a description of project 1",
+      imageUrl: "/images/practice.png",
+      githubLink: "https://example.com",
     },
   ];
 
@@ -76,7 +85,7 @@ export default function Home() {
                 My Projects <span className="text-[#fd6463]">🚀</span>
               </div>
             </div>
-            <GridItem></GridItem>
+            <Projects projects={projects}></Projects>
             {/* <div className="grid grid-cols-3 grid-rows-2 bg-black ">
               {Array(6)
                 .fill(1)
