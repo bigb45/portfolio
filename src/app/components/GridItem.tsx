@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import BrutalistButton from "./BrutalistButton";
 import { ProjectData } from "./Projects";
+import TextChip from "./TextChip";
 
 interface GridItemProps extends ProjectData {
   onExitProject: () => void;
@@ -16,11 +17,12 @@ function GridItem({
   imageUrl,
   description,
   linkIcons,
+  technologies,
   onExitProject,
 }: GridItemProps) {
   const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="p-5 flex h-full flex-row cursor-default text-black ">
+    <div className="p-5 flex h-full flex-row cursor-default text-black overflow-y-scroll ">
       <motion.div
         // animate={{
         //   boxShadow: !isClicked
@@ -68,11 +70,18 @@ function GridItem({
             </div>
           );
         })}
-        <div className="flex flex-row justify-end">
-          <BrutalistButton
-            text={"GO BACK"}
-            onClick={onExitProject}
-          ></BrutalistButton>
+        <div className="flex flex-col gap-2 pb-2">
+          <div className="flex flex-row">
+            {technologies?.map((tech, i) => {
+              return <TextChip key={i} text={tech} />;
+            })}
+          </div>
+          <div className="flex flex-row justify-end">
+            <BrutalistButton
+              text={"GO BACK"}
+              onClick={onExitProject}
+            ></BrutalistButton>
+          </div>
         </div>
       </div>
     </div>

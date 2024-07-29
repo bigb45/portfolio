@@ -22,15 +22,7 @@ export default function Home() {
           icon: <FaGooglePlay size={32} />,
         },
       ],
-      technologies: [
-        "Flutter",
-        "Firebase",
-        "Dart",
-        "Python",
-        "Figma",
-        "Material UI",
-        "Git",
-      ],
+      technologies: ["Flutter", "Firebase", "Dart", "Python", "Figma", "Git"],
     },
     {
       id: "2",
@@ -45,6 +37,7 @@ export default function Home() {
           icon: <FaGithub size={32} />,
         },
       ],
+      technologies: ["Kotlin", "Express.JS", "Javascript", "Figma", "Git"],
     },
     {
       id: "3",
@@ -60,6 +53,7 @@ export default function Home() {
           icon: <ImSphere size={32} />,
         },
       ],
+      technologies: ["React", "Supabase", "Figma"],
     },
     {
       id: "4",
@@ -80,6 +74,7 @@ export default function Home() {
           icon: <FaYoutube size={32} />,
         },
       ],
+      technologies: ["Flutter", "Dart", "Figma"],
     },
   ];
 
@@ -88,10 +83,7 @@ export default function Home() {
       <Header />
       <main className="flex min-h-screen h-full bg-gradient-to-tr from-[#fee4dc] to-[#bdadf9] flex-col  items-center justify-start">
         <div className="w-full px-80 mt-24">
-          <div
-            className="flex lg:flex-row sm:flex-col md:flex-col justify-between items-center mb-10"
-            id="#"
-          >
+          <div className="flex lg:flex-row sm:flex-col md:flex-col justify-between items-center mb-10">
             <div>
               <div className="text-6xl font-bold">
                 Hello, I&apos;m{" "}
@@ -127,20 +119,14 @@ export default function Home() {
               </div>
             </div>
             <Projects projects={projects}></Projects>
-            {/* <div className="grid grid-cols-3 grid-rows-2 bg-black ">
-              {Array(6)
-                .fill(1)
-                .map((i) => (
-                  <div
-                    key={i}
-                    className="cursor-pointer border-black bg-black border-2 w-80 h-80 hover:translate-x-[-10px] hover:translate-y-[-10px]  transition-all duration-200 flex justify-center items-center text-white overflow-hidden "
-                  >
-                    <img src="images/practice.png" />
-                  </div>
-                ))}
-            </div> */}
           </div>
+          {/* <div className="w-full flex text-6xl justify-start font-bold mb-10">
+            Contact Me <span className="text-[#fd6463]">📞</span>
+          </div> */}
         </div>
+        {/* <div className="absolute bottom-0 w-full flex flex-col justify-between">
+          <MovingTape></MovingTape>
+        </div> */}
       </main>
     </div>
   );

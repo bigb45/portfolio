@@ -43,7 +43,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
     };
   }, []);
   return (
-    <div ref={gridRef} className="relative grid grid-cols-3 grid-rows-1">
+    <div ref={gridRef} className="relative grid grid-cols-3 grid-rows-1 h-full">
       {projects.map((project, index) => (
         <motion.div
           id="test"
@@ -64,7 +64,11 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
           layoutId={project.id}
           onClick={() => handleProjectSelection(project.id)}
         >
-          <img src={project.imageUrl} className="object-cover h-full w-full" />
+          <img
+            src={project.imageUrl}
+            draggable={false}
+            className="object-cover h-full w-full"
+          />
         </motion.div>
       ))}
 
@@ -89,6 +93,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
               subtitle={selectedProject!.subtitle}
               description={selectedProject!.description}
               linkIcons={selectedProject!.linkIcons}
+              technologies={selectedProject!.technologies}
               onExitProject={() => setSelectedId("")}
             ></GridItem>
           </motion.div>
