@@ -1,3 +1,5 @@
+import { FaGithub, FaGooglePlay, FaYoutube } from "react-icons/fa";
+import { ImSphere } from "react-icons/im";
 import Header from "./components/Header";
 import { Projects } from "./components/Projects";
 import WavingHand from "./components/WavingHand";
@@ -10,31 +12,74 @@ export default function Home() {
       description:
         "AZ English is a cross-platform mobile application for learning English. It is built using Flutter and Firebase. The application is designed to help users learn English by providing them with a variety of features such as quizzes, flashcards, and more. The application also includes a social feature that allows users to connect with other learners and practice their English skills together.",
       imageUrl: "/images/practice.png",
-      githubLink: "https://github.com/bigb45/az-english/",
+      linkIcons: [
+        {
+          link: "https://github.com/bigb45/az-english/",
+          icon: <FaGithub size={32} />,
+        },
+        {
+          link: "https://play.google.com/store/apps/details?id=com.evirgen.azenglish&hl=en",
+          icon: <FaGooglePlay size={32} />,
+        },
+      ],
+      technologies: [
+        "Flutter",
+        "Firebase",
+        "Dart",
+        "Python",
+        "Figma",
+        "Material UI",
+        "Git",
+      ],
     },
     {
       id: "2",
-      title: "",
-      subtitle: "This is a description of project 1",
-      description: "This is a description of project 1",
-      imageUrl: "/images/practice.png",
-      githubLink: "https://example.com",
+      title: "Foodeck",
+      subtitle: "Foodeck, THE food ordering app",
+      description:
+        "Foodeck is a food ordering app that allows users to order food from their favorite restaurants. The app is built using Flutter and Express.JS and includes features such as user authentication, restaurant listings, food ordering, and more. The app is designed to be easy to use and intuitive, making it the perfect choice for anyone looking to order food online.",
+      imageUrl: "/images/foodeck.jpg",
+      linkIcons: [
+        {
+          link: "https://github.com/bigb45/foodeck",
+          icon: <FaGithub size={32} />,
+        },
+      ],
     },
     {
       id: "3",
-      title: "Project 1",
-      subtitle: "This is a description of project 1",
-      description: "This is a description of project 1",
-      imageUrl: "/images/practice.png",
-      githubLink: "https://example.com",
+      title: "Formally",
+      subtitle: "Build forms, manage users and organizations with Formally",
+      description:
+        "Formally is a SaaS webapp targeted towards businesses and organizations. It allows users to create forms, manage users and organizations, and more. The app is built using React, Node.js, and PlanetScale and includes features such as user authentication, form creation, AI question generation, and more.",
+      imageUrl: "/images/formally.png",
+      linkIcons: [
+        {
+          displayUrl: "app.clique.team",
+          link: "https://app.clique.team",
+          icon: <ImSphere size={32} />,
+        },
+      ],
     },
     {
       id: "4",
-      title: "Project 1",
-      subtitle: "This is a description of project 1",
-      description: "This is a description of project 1",
-      imageUrl: "/images/practice.png",
-      githubLink: "https://example.com",
+      title: "Ecopoly",
+      subtitle:
+        "EcoPoly: The Green Property Game! Buy lands and Plant forests with friends online!",
+      description:
+        "A pass-and-play mobile game where you compete against your friends to build green cities and plant trees. Landing on a city with many trees will cost you! Buy sustainable energy companies and bike lanes, If you land on a tax card you have to pay an Environmental Tax! Trade properties with your friends and build your Own Green Empire!",
+      imageUrl: "/images/ecopoly.jpg",
+      linkIcons: [
+        {
+          link: "https://github.com/bigb45/ecopoly",
+          icon: <FaGithub size={32} />,
+        },
+        {
+          displayUrl: "youtube.com/watch?BzpH4am1jtw",
+          link: "https://youtu.be/BzpH4am1jtw",
+          icon: <FaYoutube size={32} />,
+        },
+      ],
     },
   ];
 
@@ -69,12 +114,8 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-black">
-              <div className="w-[300px] h-[300px] hover:translate-x-[-10px] hover:translate-y-[-10px] transition-all duration-200">
-                <img
-                  src="/images/placeholder.png"
-                  alt="profile"
-                  draggable={false}
-                />
+              <div className="w-[300px] h-[300px] overflow-clip hover:translate-x-[-10px] hover:translate-y-[-10px] transition-all duration-200">
+                <img src="/images/me.jpg" alt="profile" draggable={false} />
               </div>
             </div>
           </div>

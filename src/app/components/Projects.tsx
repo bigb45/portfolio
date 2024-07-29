@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import GridItem from "./GridItem";
 export interface ProjectData {
   id: string;
@@ -9,8 +9,13 @@ export interface ProjectData {
   subtitle: string;
   description: string;
   imageUrl: string;
-  githubLink?: string;
+  linkIcons: LinkIcon[];
   technologies?: string[];
+}
+interface LinkIcon {
+  displayUrl?: string;
+  link: string;
+  icon: ReactNode;
 }
 export function Projects({ projects }: { projects: ProjectData[] }) {
   const [selectedId, setSelectedId] = useState<string>("");
@@ -54,12 +59,12 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
           }}
           animate={selectedId === project.id ? { x: 0, y: 0 } : { x: 0, y: 0 }}
           transition={{ duration: 0.05, ease: "linear" }}
-          className="cursor-pointer border-black bg-black border-2 w-80 h-80   transition-all duration-200 flex justify-center items-center text-white overflow-hidden  "
+          className="cursor-pointer border-black bg-[#c4c4c4] border-2 w-80 h-80   transition-all duration-200 flex justify-center items-center text-white overflow-hidden "
           key={index}
           layoutId={project.id}
           onClick={() => handleProjectSelection(project.id)}
         >
-          <img src={project.imageUrl} />
+          <img src={project.imageUrl} className="object-cover h-full w-full" />
         </motion.div>
       ))}
 
@@ -83,7 +88,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
               imageUrl={selectedProject!.imageUrl}
               subtitle={selectedProject!.subtitle}
               description={selectedProject!.description}
-              githubLink={selectedProject!.githubLink}
+              linkIcons={selectedProject!.linkIcons}
               onExitProject={() => setSelectedId("")}
             ></GridItem>
           </motion.div>

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import { FaGithub } from "react-icons/fa";
 import BrutalistButton from "./BrutalistButton";
 import { ProjectData } from "./Projects";
 
@@ -16,7 +15,7 @@ function GridItem({
   subtitle,
   imageUrl,
   description,
-  githubLink,
+  linkIcons,
   onExitProject,
 }: GridItemProps) {
   const [isClicked, setIsClicked] = useState(false);
@@ -35,7 +34,7 @@ function GridItem({
       >
         <Link
           target="_blank"
-          href={githubLink ?? ""}
+          href={linkIcons[0].link ?? ""}
           className="items-center justify-center flex h-full w-full"
         >
           <img
@@ -51,21 +50,24 @@ function GridItem({
         <div className="text-xl mb-4">{subtitle}</div>
         <div className="mb-10">{description}</div>
         Check it out here
-        <div>
-          {githubLink && (
-            <Link
-              className="inline-flex"
-              href={githubLink ?? ""}
-              target="_blank"
-            >
-              <div className="hover:underline decoration-wavy flex underline-offset-4 flex-row items-center w-fit py-4">
-                <FaGithub size={32} />
-
-                {githubLink?.split("github.com")[1]}
-              </div>
-            </Link>
-          )}
-        </div>
+        {linkIcons.map((link, i) => {
+          return (
+            <div key={i}>
+              {link.link && (
+                <Link
+                  className="inline-flex"
+                  href={link.link ?? ""}
+                  target="_blank"
+                >
+                  <div className="gap-1 hover:underline decoration-wavy flex underline-offset-4 flex-row items-center w-fit py-4">
+                    <div>{link.icon}</div>
+                    {link.displayUrl ?? link.link?.split(".com")[1]}
+                  </div>
+                </Link>
+              )}
+            </div>
+          );
+        })}
         <div className="flex flex-row justify-end">
           <BrutalistButton
             text={"GO BACK"}
