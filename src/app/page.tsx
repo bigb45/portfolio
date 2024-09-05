@@ -81,13 +81,13 @@ export default function Home() {
   return (
     <div className="font-grotesk select-none">
       <Header />
-      <main className="flex min-h-screen h-full bg-gradient-to-tr from-[#fee4dc] to-[#bdadf9] flex-col  items-center justify-start">
+      <main className="flex min-h-screen h-full bg-[#fdfcf1] flex-col  items-center justify-start">
         <div className="w-full px-80 mt-24">
           <div className="flex lg:flex-row sm:flex-col md:flex-col justify-between items-center mb-10">
             <div>
               <div className="text-6xl font-bold">
                 Hello, I&apos;m{" "}
-                <span className="text-[#fd6463] underline decoration-wavy decoration-[#fdfcf1] underline-offset-8">
+                <span className="text-[#fd6463] underline decoration-wavy decoration-black underline-offset-8">
                   Mohammed
                 </span>{" "}
                 <WavingHand />
