@@ -81,11 +81,11 @@ export default function Home() {
   return (
     <div className="font-grotesk select-none">
       <Header />
-      <main className="flex min-h-screen h-full bg-[#fdfcf1] flex-col  items-center justify-start">
-        <div className="w-full px-80 mt-24">
-          <div className="flex lg:flex-row sm:flex-col md:flex-col justify-between items-center mb-10">
+      <main className="flex min-h-screen h-full bg-[#fdfcf1] flex-col items-center justify-start">
+        <div className="w-full px-4 sm:px-6 lg:px-60 mt-24">
+          <div className="flex flex-col lg:flex-row justify-between items-center mb-10 gap-10">
             <div>
-              <div className="text-6xl font-bold">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold">
                 Hello, I&apos;m{" "}
                 <span className="text-[#fd6463] underline decoration-wavy decoration-black underline-offset-8">
                   Mohammed
@@ -93,40 +93,41 @@ export default function Home() {
                 <WavingHand />
               </div>
 
-              <div className="max-w-prose text-slate-500">
-                <br />I am a junior mobile developer 📱 with a passion for
-                creating beautiful applications. I am currently working on a few
-                projects. take a look at my work below. Lorem ipsum, dolor sit
-                amet consectetur adipisicing elit. Necessitatibus, itaque, fuga
-                aut nam laboriosam deserunt odio eum sunt temporibus doloribus
-                nesciunt. Perferendis, vitae? Minus quas, minima odit
-                consectetur reiciendis nemo vitae qui. Labore voluptates enim
-                perspiciatis et minus porro repudiandae eius omnis, nihil
-                dignissimos nostrum explicabo laborum quod inventore accusamus.
+              <div className="max-w-prose text-slate-500 mt-4">
+                I am a junior mobile developer 📱 with a passion for creating beautiful applications.
+                {/* Add more text */}
               </div>
             </div>
             <div className="bg-black">
-              <div className="w-[300px] h-[300px] overflow-clip hover:translate-x-[-10px] hover:translate-y-[-10px] transition-all duration-200">
-                <img src="/images/me.jpg" alt="profile" draggable={false} />
+              <div className="w-full sm:w-[200px] md:w-[300px] h-[300px] overflow-clip hover:translate-x-[-10px] hover:translate-y-[-10px] transition-all duration-200">
+                <img src="/images/me.jpg" alt="profile" draggable={false} className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
-
           <div className="flex flex-col justify-between items-start mb-10">
             <div>
-              <div className="text-6xl font-bold mb-10">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-10"> 
                 My Projects <span className="text-[#fd6463]">🚀</span>
               </div>
             </div>
             <Projects projects={projects}></Projects>
           </div>
-          {/* <div className="w-full flex text-6xl justify-start font-bold mb-10">
-            Contact Me <span className="text-[#fd6463]">📞</span>
-          </div> */}
+          {/* <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-10">
+            My Projects <span className="text-[#fd6463]">🚀</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {projects.map((project) => (
+              <div key={project.id} className="bg-white p-4 rounded-lg shadow-md">
+                <img src={project.imageUrl} alt={project.title} className="w-full h-40 object-cover mb-4" />
+                <h3 className="text-lg font-bold">{project.title}</h3>
+                <p>{project.subtitle}</p>
+                }
+              </div>
+            ))}
+          </div>
+ */}
         </div>
-        {/* <div className="absolute bottom-0 w-full flex flex-col justify-between">
-          <MovingTape></MovingTape>
-        </div> */}
       </main>
     </div>
   );

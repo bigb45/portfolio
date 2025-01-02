@@ -1,8 +1,8 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-
 import { ReactNode, useEffect, useRef, useState } from "react";
 import GridItem from "./GridItem";
+
 export interface ProjectData {
   id: string;
   title: string;
@@ -12,16 +12,16 @@ export interface ProjectData {
   linkIcons: LinkIcon[];
   technologies?: string[];
 }
+
 interface LinkIcon {
   displayUrl?: string;
   link: string;
   icon: ReactNode;
 }
+
 export function Projects({ projects }: { projects: ProjectData[] }) {
   const [selectedId, setSelectedId] = useState<string>("");
   const [selectedProject, setSelectedProject] = useState<ProjectData>();
-  const items: ProjectData[] = [];
-
   const gridRef = useRef<HTMLDivElement>(null);
 
   const handleProjectSelection = (id: string) => {
@@ -42,11 +42,16 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
-    <div ref={gridRef} className="relative grid grid-cols-3 grid-rows-1 h-full">
+    <div
+      ref={gridRef}
+      className="relative grid grid-cols-1 sm:w-full sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6"
+
+    >
       {projects.map((project, index) => (
         <motion.div
-          id="test"
+          key={index}
           whileTap={{
             x: 0,
             y: 0,
@@ -59,13 +64,12 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
           }}
           animate={selectedId === project.id ? { x: 0, y: 0 } : { x: 0, y: 0 }}
           transition={{ duration: 0.05, ease: "linear" }}
-          className="cursor-pointer border-black bg-[#c4c4c4] border-2 w-80 h-80   transition-all duration-200 flex justify-center items-center text-white overflow-hidden "
-          key={index}
-          layoutId={project.id}
-          onClick={() => handleProjectSelection(project.id)}
+          className="cursor-pointer border-black  bg-[#c4c4c4] border-2  h-80  transition-all duration-200 flex justify-center items-center text-white overflow-hidden"
+          layoutId={project.id}          onClick={() => handleProjectSelection(project.id)}
         >
           <img
             src={project.imageUrl}
+            alt={project.title}
             draggable={false}
             className="object-cover h-full w-full"
           />
@@ -75,17 +79,13 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
       <AnimatePresence>
         {selectedId && (
           <motion.div
-            // transition={}
             layoutId={selectedId}
-            className="cursor-pointer absolute   border-2 w-full h-full p-4 bg-white border-black  text-white overflow"
+            className="cursor-pointer absolute border-2 w-full h-full p-4 bg-white border-black text-black overflow-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            {/* <motion.button
-              className="absolute h-10 w-10 text-6xl text-black right-1 top-1"
-              onClick={() => setSelectedId("")}
-            >
-              x
-            </motion.button> */}
-
             <GridItem
               id={selectedId}
               title={selectedProject!.title}
@@ -95,12 +95,10 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
               linkIcons={selectedProject!.linkIcons}
               technologies={selectedProject!.technologies}
               onExitProject={() => setSelectedId("")}
-            ></GridItem>
+            />
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
 }
-
-// export default Projects;

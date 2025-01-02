@@ -22,69 +22,64 @@ function GridItem({
 }: GridItemProps) {
   const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="p-5 flex h-full flex-row cursor-default text-black overflow-y-scroll ">
-      <motion.div
-        // animate={{
-        //   boxShadow: !isClicked
-        //     ? "10px 10px 0px rgba(0, 0, 0, 1)"
-        //     : "0px 0px 0px rgba(0, 0, 0, 0)",
-        // }}
-        whileTap={{ x: 10, y: 10 }}
-        onMouseDown={() => setIsClicked(true)}
-        onMouseUp={() => setIsClicked(false)}
-        className="flex-1 p-4 h-full bg-[#f8f8f8] border-black border-2 shadow-[10px_10px_0px_0px_#000] mx-4"
-      >
-        <Link
-          target="_blank"
-          href={linkIcons[0].link ?? ""}
-          className="items-center justify-center flex h-full w-full"
-        >
-          <img
-            alt="project"
-            src={imageUrl}
-            className=" cursor-pointer transition-all duration-200 object-scale-down h-full"
-          />
-        </Link>
-      </motion.div>
+    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 ">
+  <motion.div
+    whileTap={{ x: 10, y: 10 }}
+    onMouseDown={() => setIsClicked(true)}
+    onMouseUp={() => setIsClicked(false)}
+    className="w-full p-4 h-64 md:h-full bg-[#f8f8f8] border-black border-2 shadow-[10px_10px_0px_0px_#000]"
+  >
+    <Link
+      target="_blank"
+      href={linkIcons[0].link ?? ""}
+      className="flex items-center justify-center h-full w-full"
+    >
+      <img
+        alt="project"
+        src={imageUrl}
+        className="cursor-pointer transition-all duration-200 object-contain max-h-full "
+      />
+    </Link>
+  </motion.div>
 
-      <div className="flex-1 px-4">
-        <div className="text-6xl font-bold">{title}</div>
-        <div className="text-xl mb-4">{subtitle}</div>
-        <div className="mb-10">{description}</div>
-        Check it out here
-        {linkIcons.map((link, i) => {
-          return (
-            <div key={i}>
-              {link.link && (
-                <Link
-                  className="inline-flex"
-                  href={link.link ?? ""}
-                  target="_blank"
-                >
-                  <div className="gap-1 hover:underline decoration-wavy flex underline-offset-4 flex-row items-center w-fit py-4">
-                    <div>{link.icon}</div>
-                    {link.displayUrl ?? link.link?.split(".com")[1]}
-                  </div>
-                </Link>
-              )}
+  <div className="flex flex-col px-4">
+    <div className="text-4xl md:text-6xl font-bold">{title}</div>
+    <div className="text-lg md:text-xl mb-4">{subtitle}</div>
+    <div className="mb-10">{description}</div>
+    <div className="text-lg">Check it out here</div>
+
+    {linkIcons.map((link, i) => (
+      <div key={i}>
+        {link.link && (
+          <Link
+            className="inline-flex"
+            href={link.link ?? ""}
+            target="_blank"
+          >
+            <div className="gap-1 hover:underline decoration-wavy flex underline-offset-4 flex-row items-center w-fit py-4">
+              <div>{link.icon}</div>
+              {link.displayUrl ?? link.link?.split(".com")[1]}
             </div>
-          );
-        })}
-        <div className="flex flex-col gap-2 pb-2">
-          <div className="flex flex-row">
-            {technologies?.map((tech, i) => {
-              return <TextChip key={i} text={tech} />;
-            })}
-          </div>
-          <div className="flex flex-row justify-end">
-            <BrutalistButton
-              text={"GO BACK"}
-              onClick={onExitProject}
-            ></BrutalistButton>
-          </div>
-        </div>
+          </Link>
+        )}
       </div>
+    ))}
+
+    <div className="flex flex-wrap gap-2 pb-4">
+      {technologies?.map((tech, i) => (
+        <TextChip key={i} text={tech} />
+      ))}
     </div>
+
+    <div className="flex justify-end m-2">
+      <BrutalistButton
+        text="GO BACK"
+        onClick={onExitProject}
+      />
+    </div>
+  </div>
+</div>
+
   );
 }
 
