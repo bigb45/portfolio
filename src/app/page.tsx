@@ -3,6 +3,7 @@ import { ImSphere } from "react-icons/im";
 import Header from "./components/Header";
 import { Projects } from "./components/Projects";
 import WavingHand from "./components/WavingHand";
+import MovingTape from "./components/MovingTape";
 export default function Home() {
   const projects = [
     {
@@ -94,8 +95,13 @@ export default function Home() {
               </div>
 
               <div className="max-w-prose text-slate-500 mt-4">
-                I am a junior mobile developer 📱 with a passion for creating beautiful applications.
-                {/* Add more text */}
+              I’m a junior mobile developer 📱 with a strong passion for crafting beautiful, high-performing applications. I really care about the details – from smooth functionality to eye-catching designs that feel great to use. Building apps that not only work flawlessly but also look and feel amazing is something I take pride in.
+
+I’m always eager to learn and grow, whether it’s diving deeper into Android development with Jetpack Compose or experimenting with new tools and frameworks like Flutter. I enjoy pushing the boundaries of what I know, and I’m constantly refining my skills to stay ahead of the curve.
+
+I believe in clean, efficient code and building apps that people genuinely enjoy using. Whether it’s integrating complex APIs, optimizing performance, or fine-tuning UI/UX, I approach every project with enthusiasm and a drive to create something impactful.
+
+Learning new things is part of what keeps me excited about development – there’s always something to explore, and I’m always up for the challenge.                {/* Add more text */}
               </div>
             </div>
             <div className="bg-black">
@@ -127,8 +133,14 @@ export default function Home() {
             ))}
           </div>
  */}
+ {/* <div className="w-full flex text-6xl justify-start font-bold mb-10">
+            Contact Me <span className="text-[#fd6463]">📞</span>
+          </div> */}
         </div>
       </main>
+        <div className="sticky bottom-0 w-full flex flex-col justify-between">
+          <MovingTape></MovingTape>
+        </div>
     </div>
   );
 }

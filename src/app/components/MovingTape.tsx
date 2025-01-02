@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 function MovingTape() {
   const tapes = [
     "Flutter",
+    "Kotlin",
     "Firebase",
     "Dart",
     "Python",
     "Figma",
     "Git",
-    "Kotlin",
+    
     "Express.JS",
     "Javascript",
     "Figma",
@@ -44,7 +45,7 @@ function MovingTape() {
             className=" font-bold text-xl bg-white whitespace-nowrap"
             animate={{
               ...scrollAnimation.animate,
-              transition: { ...scrollAnimation.animate.transition, delay: 15 },
+              transition: { ...scrollAnimation.animate.transition, delay: 0 },
             }}
           >
             {tapes.join(" • ")}
