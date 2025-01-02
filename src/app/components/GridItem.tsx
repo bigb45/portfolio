@@ -35,10 +35,11 @@ function GridItem({
       className="flex items-center justify-center h-full w-full"
     >
       <img
-        alt="project"
-        src={imageUrl}
-        className="cursor-pointer transition-all duration-200 object-contain max-h-full "
-      />
+  alt="project"
+  src={imageUrl}
+  className="cursor-pointer transition-all duration-200 object-contain max-h-full shadow-[4px_4px_10px_rgba(0,0,0,0.3)]"
+/>
+
     </Link>
   </motion.div>
 
