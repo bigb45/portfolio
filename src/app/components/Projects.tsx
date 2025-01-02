@@ -46,7 +46,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
   return (
     <div
       ref={gridRef}
-      className="relative grid grid-cols-1 sm:w-full sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6"
+      className="relative grid grid-cols-1 sm:w-full sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-0 "
 
     >
       {projects.map((project, index) => (
