@@ -1,21 +1,34 @@
 import Link from "next/link";
+import BreadcrumbNavigation from "./BreadcrumbNavigation";
 
 function Header() {
-  return (
-    <div className="py-2 flex justify-between items-center min-w-full h-20 backdrop-blur-md fixed px-4 lg:px-80 z-10 w-full">
-      <div className="text-3xl flex-grow text-center lg:text-left">PORTOFILO</div>
-      <div className="gap-4 flex flex-row hidden sm:hidden md:hidden lg:flex">
-        <Link href="/" 
-        className="squiggle"
-        >
-          Home
-        </Link>
-        <Link href="#about" className="squiggle">About</Link>
-        <Link href="/" className="squiggle">Work</Link>
-        <Link href="/" className="squiggle">Experience</Link>
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex flex-col">
+            <div className="z-10 mx-auto flex h-20 w-full max-w-2xl items-center justify-between lg:max-w-xl">
+                <Link
+                    href="/"
+                    className="flex-grow text-center text-3xl lg:text-left"
+                >
+                    Natour
+                </Link>
+                <div className="flex flex-row gap-4 sm:hidden md:hidden lg:flex">
+                    <Link href="/blog" className="squiggle">
+                        Blog
+                    </Link>
+                    <Link href="/case-studies" className="squiggle">
+                        Case studies
+                    </Link>
+                    <Link href="/projects" className="squiggle">
+                        Projects
+                    </Link>
+                    <Link href="/" className="squiggle">
+                        Secret
+                    </Link>
+                </div>
+            </div>
+            <BreadcrumbNavigation />
+        </div>
+    );
 }
 
 export default Header;

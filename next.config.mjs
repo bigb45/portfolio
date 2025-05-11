@@ -1,13 +1,8 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === "production";
-// const nextConfig = {
-//   output: "export",
-//   distDir: "dist",
-//   // basePath: isProd ? "/nextjs-blog-deployment" : "",
-// };
-// next.config.mjs
+
 const nextConfig = {
-  output: "export",
+  // output: "export", // this is used to build static websites
   distDir: "dist",
 
   images: {

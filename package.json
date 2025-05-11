@@ -13,14 +13,19 @@
   "dependencies": {
     "@air/react-drag-to-select": "^5.0.8",
     "@next/font": "^14.2.5",
+    "@radix-ui/react-slot": "^1.2.2",
+    "clsx": "^2.1.1",
     "framer-motion": "^11.3.19",
+    "lucide-react": "^0.507.0",
     "next": "14.2.3",
     "nodemon": "^3.1.1",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-selectable": "^2.1.1",
+    "rough-notation": "^0.5.1",
     "styled-components": "^6.1.12",
+    "tailwind-merge": "^3.2.0",
     "xp.css": "^0.2.6"
   },
   "devDependencies": {

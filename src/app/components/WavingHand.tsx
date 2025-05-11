@@ -20,7 +20,7 @@ function WavingHand() {
       onClick={handleHandClick}
       className="relative cursor-pointer inline-block"
     >
-      <div className=" hover:waving-hand">👋</div>
+      <div className="hover:waving-hand">👋</div>
       {/* <div className="top-0 left-0 absolute w-20 h-20  ">
         {renderedGreetings.map((greeting, index) => (
           <div key={index} className="absolute fading-text">
