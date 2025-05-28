@@ -3,7 +3,7 @@ import React from 'react'
 function page() {
   return (
     <div>
-      Case studies
+      Cooking, come back later.
     </div>
   )
 }
