@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model blog {
+  id           String   @id
+  blogTitle    String   @map("title")
+  blogSubtitle String   @map("subtitle")
+  isPublic     Boolean  @default(false) @map("is_public")
+  blogText     String   @default("Long blog text") @map("blog_text")
+  isPinned     Boolean  @default(false) @map("is_pinned")
+  publishDate  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  category     String?
+  color        String?
+}
