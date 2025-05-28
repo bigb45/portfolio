@@ -37,13 +37,11 @@ function BreadcrumbNavigation() {
                                             {segment}
                                         </BreadcrumbPage>
                                     ) : (
-                                        <Fragment>
-                                            <BreadcrumbLink
-                                                href={`/${segment}`}
-                                            >
-                                                {segment}
-                                            </BreadcrumbLink>
-                                        </Fragment>
+                                        <BreadcrumbLink
+                                            href={`/${segment}`}
+                                        >
+                                            {segment}
+                                        </BreadcrumbLink>
                                     )}
                                 </BreadcrumbItem>
                                 {!isLastItem ? <BreadcrumbSeparator /> : <></>}
