@@ -37,3 +37,7 @@ next-env.d.ts
 /dist/
 
 *storybook.log
+.env
+
+/generated
+.prisma
