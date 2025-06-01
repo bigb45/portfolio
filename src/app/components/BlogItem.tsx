@@ -1,19 +1,20 @@
+"use client"
 import { Divide, Icon, Pin } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import { formatDate } from "../utils";
 
-interface props {
+export interface BlogListItemProps {
     blogTitle: string;
     blogSubtitle: string;
-    category: string;
+    category: string | null;
     publishDate: Date;
     isPinned: boolean;
     isPublic: boolean;
-    color: string;
+    color: string | null;
     id: string;
 }
 
-export type BlogListItemProps = props;
 
 function BlogListItem({
     blogTitle,
@@ -25,12 +26,13 @@ function BlogListItem({
     color,
     id,
 }: BlogListItemProps) {
+
+
     return (
         <div>
             <div className="h-[2px] w-full bg-gray-300"></div>
-
             <div className="group py-4">
-                <Link href={`blog/${id}`}>
+                <Link href={`${id}`}>
                     <div className="w-full rounded-lg p-4 group-hover:bg-gray-100">
                         <div className="flex justify-between">
                             {" "}
@@ -42,7 +44,7 @@ function BlogListItem({
                             )}
                         </div>
                         <p className="text-sm text-gray-400">
-                            published on 23/4/2025
+                            Published on {formatDate(publishDate)}
                         </p>
                         <div className="my-2 flex flex-col">
                             <p>{blogSubtitle}</p>

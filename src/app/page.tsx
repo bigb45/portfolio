@@ -1,5 +1,11 @@
 "use client";
-import { FaGithub, FaGooglePlay, FaYoutube } from "react-icons/fa";
+import {
+    FaEnvelope,
+    FaGithub,
+    FaGooglePlay,
+    FaLinkedin,
+    FaYoutube,
+} from "react-icons/fa";
 import { ImSphere } from "react-icons/im";
 import Header from "./components/Header";
 import { Projects } from "./components/Projects";
@@ -7,6 +13,7 @@ import WavingHand from "./components/WavingHand";
 import MovingTape from "./components/MovingTape";
 import { annotate } from "rough-notation";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 export default function Home() {
     const projects = [
         {
@@ -119,53 +126,42 @@ export default function Home() {
                                 <span ref={highlightRef} id="myElement">
                                     Mohammed
                                 </span>
-                                {/* <span  className="text-[#fd6463] underline decoration-wavy decoration-black underline-offset-8">
-                  Mohammed
-                </span>{" "} */}
                                 {/* <WavingHand /> */}
                             </div>
 
                             <div className="mt-4 max-w-prose text-slate-500">
-                                Helelle
+                                Natour, the Piper, is a mobile developer and a UI/UX designer.
                             </div>
                         </div>
-                        {/* <div className="bg-black">
-              <div className="w-full sm:w-[200px] md:w-[300px] h-[300px] overflow-clip hover:translate-x-[-10px] hover:translate-y-[-10px] transition-all duration-200">
-                <img src="/images/me.jpg" alt="profile" draggable={false} className="w-full h-full object-cover" />
-              </div>
-            </div> */}
                     </div>
-                    {/* <div className="flex flex-col justify-between items-start mb-10">
-            <div>
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-10"> 
-                My Projects <span className="text-[#fd6463]">🚀</span>
-              </div>
-            </div>
-            <Projects projects={projects}></Projects>
-          </div> */}
-                    {/* <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-10">
-            My Projects <span className="text-[#fd6463]">🚀</span>
-          </div>
+                    <div className="flex w-full gap-14 items-center justify-center mt-96">
+                        <Link
+                            className="flex gap-2 hover:underline underline-offset-8 decoration-red-400"
+                            href={`${process.env.NEXT_PUBLIC_LINKEDIN_URL}`}
+                            target="_blank"
+                        >
+                            <FaLinkedin size={24} />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {projects.map((project) => (
-              <div key={project.id} className="bg-white p-4 rounded-lg shadow-md">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-40 object-cover mb-4" />
-                <h3 className="text-lg font-bold">{project.title}</h3>
-                <p>{project.subtitle}</p>
-                }
-              </div>
-            ))}
-          </div>
- */}
-                    {/* <div className="w-full flex text-6xl justify-start font-bold mb-10">
-            Contact Me <span className="text-[#fd6463]">📞</span>
-          </div> */}
+                        </Link>
+                        <Link
+                            className="flex gap-2 hover:underline underline-offset-8 decoration-red-400"
+                            href={`${process.env.NEXT_PUBLIC_GITHUB_URL}`}
+                            target="_blank"
+                        >
+                            <FaGithub size={24} />
+
+                        </Link>
+                        <Link
+                            className="flex gap-2 hover:underline underline-offset-8 decoration-red-400"
+                            href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                            target="_blank"
+                        >
+                            <FaEnvelope size={24} />
+
+                        </Link>
+                    </div>
                 </div>
             </main>
-            {/* <div className="sticky bottom-0 w-full flex flex-col justify-between">
-          <MovingTape></MovingTape>
-        </div> */}
         </div>
     );
 }

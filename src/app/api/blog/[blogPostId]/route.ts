@@ -1,5 +1,6 @@
 import { BlogListItemProps } from "@/app/components/BlogItem";
 import { prisma } from "@/lib/prisma";
+import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, { params }: { params: { blogPostId: string } }) {
@@ -17,3 +18,17 @@ export async function GET(req: Request, { params }: { params: { blogPostId: stri
     return NextResponse.json(blog)
 }
 
+export async function DELETE(request: Request, { params }: { params: { blogPostId: string}}) {
+    console.log("blog id: " + params.blogPostId)
+    try {
+        const result = await prisma.blog.delete(
+        {where: {id: params.blogPostId}}
+    )
+        if (result.id == params.blogPostId)
+            return NextResponse.json({"result" : "success"})
+
+    } catch (e) {
+        console.log(e)
+        return NextResponse.json({ "result": "error" }, { status: 400 })
+   }
+}

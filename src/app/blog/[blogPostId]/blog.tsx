@@ -1,16 +1,18 @@
 import { prisma } from "@/lib/prisma";
 import React from "react";
 import { BlogObject } from "./page";
+import { BlogListItemProps } from "@/app/components/BlogItem";
 
-interface BlogProps {
-    articleText: string;
-}
 
-export default function Blog({ articleText }: BlogProps) {
+export default function Blog(
+    { blogText, publishDate, blogTitle, blogSubtitle }: BlogObject
+) {
 
     return (
         <div>
-            <p>{articleText}</p>
+            <p>{blogTitle}</p>
+            <p>{blogSubtitle}</p>
+            <p>{blogText}</p>
             {/* <Markdown>*hello* hello</Markdown> */}
 
         </div>

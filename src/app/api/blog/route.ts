@@ -5,12 +5,15 @@ import { NextResponse } from "next/server";
 export async function GET() {
     console.log("getting the blogs")
     const blogList = await prisma.blog.findMany()
-    console.log({ blogList })
     return NextResponse.json(blogList)
     
 }
 
-export async function PUT(req: Request) {
+
+// export async function POST(request: any) {
+//     return Response.json({"message" : "Good"})
+// }
+export async function POST(req: Request) {
     const request = await req.json()
     console.log("putting blog")
     console.log(request)
@@ -19,5 +22,5 @@ export async function PUT(req: Request) {
        {data: {id: blogId, ...request}}
     )
     console.log({result})
-    return NextResponse.json(null)
+    return NextResponse.json({ success: true, }, { status: 200 })
 }

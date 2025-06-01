@@ -1,5 +1,6 @@
 import React from "react";
 import BlogListItem, { BlogListItemProps } from "../components/BlogItem";
+import { prisma } from "@/lib/prisma";
 
 export default async function BlogList() {
     const blogList = await getBlogs();
@@ -13,12 +14,13 @@ export default async function BlogList() {
 }
 
 async function getBlogs(): Promise<BlogListItemProps[]> {
-    const blogApiUrl = "https://6818d0b05a4b07b9d1d0f526.mockapi.io/api/blog/";
-    const blogListEndpoint = "blogList";
 
-    const response = await fetch(blogApiUrl + blogListEndpoint);
+    const blog = await prisma.blog.findMany({
+        orderBy: [
+            { isPinned: 'desc' },
+            { publishDate: 'desc' }
+        ]
+    })
 
-    // error handling here
-    // await new Promise((response) => setTimeout(response, 2000));
-    return response.json();
+    return blog
 }

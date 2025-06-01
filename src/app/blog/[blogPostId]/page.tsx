@@ -6,6 +6,7 @@ import Blog from "./blog";
 export interface BlogObject {
     blogTitle: string;
     blogText: string;
+    blogSubtitle: string;
     publishDate: Date;
 }
 
@@ -37,7 +38,7 @@ function BlogBlog() {
                 </div>
             ) : (
 
-                <Blog articleText={blog?.blogText ?? ""} />
+                <Blog {...blog!} />
             )}
         </div>
     );
