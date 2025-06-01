@@ -4,6 +4,8 @@ const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
   // output: "export", // this is used to build static websites
   distDir: "dist",
+  
+  trailingSlash: true,
 
   images: {
     loader: "custom",
