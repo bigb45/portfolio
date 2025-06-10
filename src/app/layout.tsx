@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className="font-grotesk ${inter.className} mx-auto max-w-2xl px-2 lg:max-w-xl">
+            <body className="${inter.className} mx-auto max-w-2xl select-none px-2 font-grotesk lg:max-w-2xl">
                 <Header />
                 {children}
             </body>

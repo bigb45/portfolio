@@ -117,47 +117,48 @@ export default function Home() {
 
     return (
         <div>
-            <main className="flex flex-col items-center justify-start">
+            <main className="flex w-full flex-col items-center justify-start">
                 <div className="mt-24">
                     <div className="mb-10 flex flex-col items-center justify-between gap-10 lg:flex-row">
                         <div>
-                            <div className="#highlight text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl">
+                            <div className="#highlight text-4xl font-bold leading-10 text-[#0F172A] sm:text-5xl md:text-6xl">
                                 Hello, I&apos;m{" "}
-                                <span ref={highlightRef} id="myElement">
+                                <span
+                                    ref={highlightRef}
+                                    id="myElement"
+                                    className="mt-2 inline-block"
+                                >
                                     Mohammed
                                 </span>
                                 {/* <WavingHand /> */}
                             </div>
 
-                            <div className="mt-4 max-w-prose text-slate-500">
-                                Natour, the Piper, is a mobile developer and a UI/UX designer.
+                            <div className="mt-4 max-w-prose text-xl text-gray-800">
+                                developer & designer.
                             </div>
                         </div>
                     </div>
-                    <div className="flex w-full gap-14 items-center justify-center mt-96">
+                    <div className="mt-96 flex w-full items-center justify-center gap-14">
                         <Link
-                            className="flex gap-2 hover:underline underline-offset-8 decoration-red-400"
+                            className="flex gap-2 decoration-red-400 underline-offset-8 hover:underline"
                             href={`${process.env.NEXT_PUBLIC_LINKEDIN_URL}`}
                             target="_blank"
                         >
                             <FaLinkedin size={24} />
-
                         </Link>
                         <Link
-                            className="flex gap-2 hover:underline underline-offset-8 decoration-red-400"
+                            className="flex gap-2 decoration-red-400 underline-offset-8 hover:underline"
                             href={`${process.env.NEXT_PUBLIC_GITHUB_URL}`}
                             target="_blank"
                         >
                             <FaGithub size={24} />
-
                         </Link>
                         <Link
-                            className="flex gap-2 hover:underline underline-offset-8 decoration-red-400"
+                            className="flex gap-2 decoration-red-400 underline-offset-8 hover:underline"
                             href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
                             target="_blank"
                         >
                             <FaEnvelope size={24} />
-
                         </Link>
                     </div>
                 </div>

@@ -4,14 +4,14 @@ import BreadcrumbNavigation from "./BreadcrumbNavigation";
 function Header() {
     return (
         <div className="flex flex-col">
-            <div className="z-10 mx-auto flex h-20 w-full max-w-2xl items-center justify-between lg:max-w-xl">
+            <div className="z-10 mx-auto flex h-20 w-full max-w-2xl items-center justify-between lg:max-w-2xl">
                 <Link
                     href="/"
                     className="flex-grow text-center text-3xl lg:text-left"
                 >
                     Natour
                 </Link>
-                <div className="flex flex-row gap-4 sm:hidden md:hidden lg:flex">
+                <div className="hidden flex-row gap-4 lg:flex">
                     <Link href="/blog" className="squiggle">
                         Blog
                     </Link>
