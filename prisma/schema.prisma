@@ -20,3 +20,19 @@ model blog {
   category     String?
   color        String?
 }
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model project {
+  id              String    @id @db.VarChar
+  start_time      DateTime? @map("startTime") @db.Timestamp(6)
+  end_time        DateTime? @map("endTime") @db.Timestamp(6)
+  title           String    @db.VarChar
+  description     String    @db.VarChar
+  is_ongoing      Boolean   @map("isOngoing")
+  tech_stack      String[]
+  github_url      String?   @map("githubLink") @db.VarChar
+  google_play_url String?   @map("playstoreLink") @db.VarChar
+  website_url     String?   @map("otherLink") @db.VarChar
+  other_url       String?   @db.VarChar
+  subtitle        String?
+}
