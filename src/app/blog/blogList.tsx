@@ -5,20 +5,31 @@ import BlogSkeleton from "./blogSkeleton";
 export const dynamic = "force-dynamic";
 
 export default async function BlogList() {
-    const baseUrl = process.env.SITE_URL || "http://localhost:3000";
+    try {
+        const res = await fetch(
+            `${process.env.SITE_URL || "http://localhost:3000"}/api/blog`,
+            {
+                cache: "no-store",
+            },
+        );
 
-    const res = await fetch(`${baseUrl}/api/blog`);
-    const blogs = await res.json();
+        if (!res.ok) throw new Error("Failed to fetch");
 
-    return (
-        <div>
-            {blogs ? (
-                blogs.map((blogItem: BlogListItemProps) => (
-                    <BlogListItem key={blogItem.id} {...blogItem} />
-                ))
-            ) : (
-                <BlogSkeleton />
-            )}
-        </div>
-    );
+        const blogs: BlogListItemProps[] = await res.json();
+
+        return (
+            <div>
+                {blogs.length ? (
+                    blogs.map((blogItem) => (
+                        <BlogListItem key={blogItem.id} {...blogItem} />
+                    ))
+                ) : (
+                    <p>No blogs found.</p>
+                )}
+            </div>
+        );
+    } catch (err) {
+        console.error("Blog fetch error:", err);
+        return <BlogSkeleton />;
+    }
 }
