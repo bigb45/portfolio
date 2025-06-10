@@ -1,18 +1,25 @@
 import { generateRandomId } from "@/app/utils";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { todo } from "node:test";
 
+
+// todo: handle errors
 export async function GET() {
     console.log("getting the blogs")
-    const blogList = await prisma.blog.findMany()
+    const blogList = await prisma.blog.findMany({
+        orderBy: [
+            {
+               isPinned: 'desc' 
+            }
+        ]
+    })
     return NextResponse.json(blogList)
     
 }
 
 
-// export async function POST(request: any) {
-//     return Response.json({"message" : "Good"})
-// }
+
 export async function POST(req: Request) {
     const request = await req.json()
     console.log("putting blog")
