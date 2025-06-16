@@ -41,7 +41,10 @@ function BreadcrumbNavigation() {
                                             {segment}
                                         </BreadcrumbPage>
                                     ) : (
-                                        <BreadcrumbLink href={`/${segment}`}>
+                                        <BreadcrumbLink
+                                            className="text-lg"
+                                            href={`/${segment}`}
+                                        >
                                             {segment}
                                         </BreadcrumbLink>
                                     )}

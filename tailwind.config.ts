@@ -22,6 +22,7 @@ const config: Config = {
                 sans: ["Inter", "sans-serif"],
                 w95fa: ["w95fa", "sans-serif"],
                 grotesk: ['"Familjen Grotesk"', "Inter"],
+                space: ['"Space Grotesk"', "sans-serif"],
             },
             colors: {
                 background: "#b8b8b8",
