@@ -50,22 +50,19 @@ function Projects() {
                     onClose={() => setShowModal(false)}
                 />
             )}
-            <div className="no-scrollbar flex-1 overflow-y-scroll">
-                <div className="flex gap-10">
-                    {/* <ProjectCard {...testProject} /> */}
-                    <ProjectPreviewCard
-                        onShowImagesClick={() => {
-                            setShowModal(!showModal);
-                        }}
-                        href="/projects/all"
-                    />
-                    <ProjectPreviewCard
-                        onShowImagesClick={() => {
-                            console.log("clickd!");
-                        }}
-                        href="/projects/all"
-                    />
-                </div>
+            <div className="mx-auto mt-8 flex flex-col gap-10 lg:flex-row">
+                <ProjectPreviewCard
+                    onShowImagesClick={() => {
+                        setShowModal(!showModal);
+                    }}
+                    href="/projects/all"
+                />
+                <ProjectPreviewCard
+                    onShowImagesClick={() => {
+                        console.log("clickd!");
+                    }}
+                    href="/projects/all"
+                />
             </div>
         </div>
     );
