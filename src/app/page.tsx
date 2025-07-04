@@ -134,7 +134,8 @@ export default function Home() {
                             </div>
 
                             <div className="mt-4 max-w-prose text-xl text-gray-800">
-                                developer & designer.
+                                I develop mobile apps and create designs on
+                                Figma sometimes.
                             </div>
                         </div>
                     </div>
