@@ -29,7 +29,6 @@ function TechnologyChipGroup({ techStackDetails }: TechnologyChipGroupProps) {
         if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
         hideTimeoutRef.current = setTimeout(() => {
             setIsVisible(false);
-            // setShownTooltipIndex(null);
         }, 100);
     };
 
@@ -49,10 +48,12 @@ function TechnologyChipGroup({ techStackDetails }: TechnologyChipGroupProps) {
             ),
         );
     }, [shownTooltipIndex]);
-    const { colors, dominantColor, darkerColor, lighterColor, loading, error } =
-        useExtractColors(techStackDetails[shownTooltipIndex ?? 0].logo, {
+    const { dominantColor } = useExtractColors(
+        techStackDetails[shownTooltipIndex ?? 0].logo,
+        {
             format: "hex",
-        });
+        },
+    );
 
     return (
         <div ref={parentRef} className="relative flex w-fit flex-wrap gap-4">
@@ -67,6 +68,8 @@ function TechnologyChipGroup({ techStackDetails }: TechnologyChipGroupProps) {
                 />
             ))}
             <TechnologyDetailsToolTip
+                onMouseEnter={() => showTooltip(shownTooltipIndex!)}
+                onMouseLeave={scheduleHideTooltip}
                 tooltipRef={tooltipRef}
                 className={`left-0 z-10 mt-4 flex opacity-0 transition-all duration-[200ms] ${
                     isVisible
@@ -108,7 +111,7 @@ function TechnologyChip({
 }: TechnologyChipProps) {
     return (
         <div
-            className="grid h-[64px] w-[64px] place-items-center rounded-full border bg-white p-4 shadow-lg"
+            className="grid h-[64px] w-[64px] place-items-center rounded-full border bg-white p-[14px] shadow-lg"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
@@ -131,12 +134,16 @@ function TechnologyDetailsToolTip({
     logo,
     usageText,
     style,
+    onMouseEnter,
+    onMouseLeave,
 }: TechnologyChipProps & {
     className?: string;
     tooltipRef: React.MutableRefObject<HTMLDivElement | null>;
 }) {
     return (
         <div
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             ref={tooltipRef}
             style={style}
             className={`${className} glass-effect absolute top-full w-[20vw] min-w-[200px] flex-col overflow-clip rounded-[16px] p-4 text-[16px] text-[#090A0E]`}
