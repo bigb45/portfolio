@@ -51,7 +51,7 @@ const project = {
         {
             id: "4",
             name: "Next.js",
-            logo: "https://static-00.iconduck.com/assets.00/next-js-icon-2048x2048-5dqjgeku.png",
+            logo: "https://images.icon-icons.com/2148/PNG/512/nextjs_icon_132160.png",
             usageText:
                 "Used for building server-side rendered React web applications with fast performance and SEO benefits",
         },
@@ -84,15 +84,17 @@ function Project({
         <div className="mt-10 flex flex-col gap-4 lg:flex-row">
             {/* text content */}
             <div className="flex-1 flex-col">
-                <p className="order-1 text-[18px] font-bold">{project.title}</p>{" "}
+                <p className="order-1 text-[34px] font-bold">{project.title}</p>{" "}
                 <Gallery
                     mainImageClassName="mx-auto w-1/3"
                     className="w-full lg:hidden"
                     images={project.images}
                 />
                 <p className="text-[18px]">{project.subtitle}</p>
-                <p className="text-[18px]">{project.description}</p>
-                <div className="mb-10 mt-10 flex flex-col text-[18px]">
+                <p className="mt-4 text-[18px] font-normal text-[#6D6D6D]">
+                    {project.description}
+                </p>
+                <div className="mb-10 mt-10 flex flex-col gap-y-2 text-[18px]">
                     Technologies used:
                     <TechnologyChipGroup
                         techStackDetails={project.techStackDetails}
