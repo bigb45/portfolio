@@ -1,5 +1,10 @@
+import LoadingSpinner from "@/components/ui/loadingSpinner";
 import React from "react";
 
 export default function Loading() {
-    return <div>Loadin...</div>;
+    return (
+        <div className="flex h-full w-full items-center justify-center">
+            <LoadingSpinner />
+        </div>
+    );
 }
