@@ -1,69 +1,65 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import ProjectCard, { ProjectProps } from "./projectCard";
+
+import { useEffect, useState } from "react";
+import { ProjectProps } from "./projectCard";
+import { AnimatePresence, motion } from "framer-motion";
+import Loading from "../loading";
 import ProjectPreviewCard from "./projectPreviewCard";
-import ImageOverlay from "@/components/imageOverlay";
 
 function Projects() {
-    const [showModal, setShowModal] = useState(false);
+    const [projects, setProjects] = useState<ProjectProps[] | null>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     useEffect(() => {
-        if (showModal) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-
-        return () => {
-            document.body.style.overflow = "";
+        const fetchProject = async () => {
+            setIsLoading(true);
+            try {
+                const res = await fetch(`/api/projects`);
+                const data = await res.json();
+                console.log(data);
+                setProjects(data);
+            } catch (e) {
+                console.error("Error fetching project:", e);
+            } finally {
+                setIsLoading(false);
+            }
         };
-    }, [showModal]);
-    const testProject: ProjectProps = {
-        id: "2",
-        title: "Foodeck",
-        subtitle: "THE food ordering app",
-        description:
-            "Foodeck is a food ordering app that allows users to order food from their favorite restaurants. The app is built using Flutter and Express.JS and includes features such as user authentication, restaurant listings, food ordering, and more. The app is designed to be easy to use and intuitive, making it the perfect choice for anyone looking to order food online.",
-        isOngoing: false,
-        techStack: [],
-        githubLink: "",
-    };
 
-    const startDate = new Date("2021-08-25").getTime();
-    const endDate = Date.now();
-    const projectDates = [
-        new Date("2022-08-25").getTime(),
-        new Date("2023-10-25").getTime(),
-        new Date("2022-10-25").getTime(),
-        new Date("2024-10-25").getTime(),
-    ];
-
+        fetchProject();
+    }, []);
     return (
         <div className="relative mb-10 mt-40 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl">
             Projects:
-            {showModal && (
-                <ImageOverlay
-                    images={[
-                        "https://picsum.photos/seed/center/400/600",
-                        "https://picsum.photos/seed/right/400/600",
-                        "https://picsum.photos/seed/left/400/600",
-                    ]}
-                    onClose={() => setShowModal(false)}
-                />
-            )}
-            <div className="mx-auto mt-8 flex flex-col gap-10 lg:flex-row">
-                <ProjectPreviewCard
-                    onShowImagesClick={() => {
-                        setShowModal(!showModal);
-                    }}
-                    href="/projects/all"
-                />
-                <ProjectPreviewCard
-                    onShowImagesClick={() => {
-                        console.log("clickd!");
-                    }}
-                    href="/projects/all"
-                />
-            </div>
+            <AnimatePresence mode="wait">
+                {isLoading ? (
+                    <motion.div
+                        key="loading"
+                        className="flex h-full items-center justify-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <Loading />
+                    </motion.div>
+                ) : (
+                    <motion.div
+                        key="loaded"
+                        className="mx-auto mt-8 grid w-full grid-cols-1 gap-10 px-4 sm:px-8 lg:grid-cols-2"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {projects?.map((project) => (
+                            <ProjectPreviewCard
+                                key={project.id}
+                                {...project}
+                                onShowImagesClick={() => {}}
+                                href={`${project.id}`}
+                            />
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

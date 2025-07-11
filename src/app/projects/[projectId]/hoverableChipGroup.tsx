@@ -3,11 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useExtractColors } from "react-extract-colors";
 
-interface TechnologyChipGroupProps {
-    techStackDetails: TechnologyChipProps[];
+export interface TechnologyChipProps {
+    id: string;
+    name: string;
+    logo: string;
+    usageText: string;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+    style?: React.CSSProperties;
 }
 
-function TechnologyChipGroup({ techStackDetails }: TechnologyChipGroupProps) {
+function TechnologyChipGroup({
+    techStackDetails,
+}: {
+    techStackDetails: TechnologyChipProps[];
+}) {
     const parentRef = useRef<HTMLDivElement | null>(null);
     const tooltipRef = useRef<HTMLDivElement | null>(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -90,15 +100,6 @@ function TechnologyChipGroup({ techStackDetails }: TechnologyChipGroupProps) {
             />
         </div>
     );
-}
-interface TechnologyChipProps {
-    id: string;
-    name: string;
-    logo: string;
-    usageText: string;
-    onMouseEnter?: () => void;
-    onMouseLeave?: () => void;
-    style?: React.CSSProperties;
 }
 
 function TechnologyChip({
