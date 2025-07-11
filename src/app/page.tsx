@@ -7,10 +7,6 @@ import {
     FaYoutube,
 } from "react-icons/fa";
 import { ImSphere } from "react-icons/im";
-import Header from "./components/Header";
-import { Projects } from "./components/Projects";
-import WavingHand from "./components/WavingHand";
-import MovingTape from "./components/MovingTape";
 import { annotate } from "rough-notation";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
