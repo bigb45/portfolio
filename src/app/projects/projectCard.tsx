@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from "react";
+import { TechnologyChipProps } from "./[projectId]/hoverableChipGroup";
 
 export interface ProjectProps {
     id: string;
@@ -14,7 +15,8 @@ export interface ProjectProps {
     playstoreLink?: string;
     otherLink?: string;
     subtitle?: string;
-    imageUrls?: string[];
+    images: string[];
+    techstackDetails: TechnologyChipProps[];
 }
 
 function ProjectCard({
@@ -29,7 +31,7 @@ function ProjectCard({
     playstoreLink,
     otherLink,
     subtitle,
-    imageUrls,
+    images,
 }: ProjectProps) {
     const [isExpanded, setIsExpanded] = useState<boolean>(true);
 

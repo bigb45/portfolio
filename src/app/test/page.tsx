@@ -191,14 +191,14 @@ function Page() {
                 >
                     {projectDates.map((projectDate, index) => {
                         return (
-                            <ProjectCard
-                                key={index}
-                                id={""}
-                                title={""}
-                                description={""}
-                                isOngoing={false}
-                                techStack={[]}
-                            />
+                            <div></div>
+                            // <ProjectCard
+                            //     key={index}
+                            //     id={""}
+                            //     title={""}
+                            //     description={""}
+                            //     isOngoing={false}
+                            // />
                         );
                     })}
                 </div>
