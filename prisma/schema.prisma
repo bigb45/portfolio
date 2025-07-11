@@ -23,16 +23,40 @@ model blog {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model project {
-  id              String    @id @db.VarChar
-  start_time      DateTime? @map("startTime") @db.Timestamp(6)
-  end_time        DateTime? @map("endTime") @db.Timestamp(6)
-  title           String    @db.VarChar
-  description     String    @db.VarChar
-  is_ongoing      Boolean   @map("isOngoing")
-  tech_stack      String[]
-  github_url      String?   @map("githubLink") @db.VarChar
-  google_play_url String?   @map("playstoreLink") @db.VarChar
-  website_url     String?   @map("otherLink") @db.VarChar
-  other_url       String?   @db.VarChar
-  subtitle        String?
+  id                String              @id @db.VarChar
+  startTime         DateTime?           @map("start_time") @db.Timestamp(6)
+  endTime           DateTime?           @map("end_time") @db.Timestamp(6)
+  title             String              @db.VarChar
+  description       String              @db.VarChar
+  isOngoing         Boolean             @map("is_ongoing")
+  techStack         String[]            @map("tech_stack")
+  playstoreLink     String?             @map("google_play_url") @db.VarChar
+  websiteUrl        String?             @map("website_url") @db.VarChar
+  otherLink         String?             @map("other_url") @db.VarChar
+  subtitle          String?
+  githubLink        String?             @map("github_url ") @db.VarChar
+  images            String[]
+  project_techstack project_techstack[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model project_techstack {
+  project_id    String     @db.VarChar
+  technology_id String     @db.VarChar
+  usage         String     @db.VarChar
+  project       project    @relation(fields: [project_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "project_technology_project_id_fkey")
+  tech_stack    tech_stack @relation(fields: [technology_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "project_technology_technology_id_fkey")
+
+  @@id([project_id, technology_id], map: "project_technology_pkey")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model tech_stack {
+  id                String              @id @db.VarChar
+  terchstack_name   String              @db.VarChar
+  usage             String              @db.VarChar
+  icon_path         String              @db.VarChar
+  project_techstack project_techstack[]
 }
