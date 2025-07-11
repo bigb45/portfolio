@@ -1,11 +1,8 @@
 import React, { Suspense, useEffect, useState } from "react";
-import Loading from "../loading";
 import BlogList from "./blogList";
-import BlogSkeleton from "./blogSkeleton";
+import Loading from "../loading";
 
 function BlogPage() {
-
-
     return (
         <div>
             <div className="mb-10 mt-40 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl">
@@ -14,15 +11,8 @@ function BlogPage() {
                 </span>{" "}
                 Blog
             </div>
-            <Suspense
-                fallback={
-                    <div className="flex h-full w-full items-center justify-center">
-                        <p><BlogSkeleton /></p>
-                    </div>
-                }
-            >
-                <BlogList />
-            </Suspense>
+
+            <BlogList />
         </div>
     );
 }

@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import BlogListItem, { BlogListItemProps } from "../components/BlogItem";
-import BlogSkeleton from "./blogSkeleton";
+import { motion, AnimatePresence } from "framer-motion";
+import Loading from "../loading";
 
 export default function BlogList() {
     const [blogs, setBlogs] = useState<BlogListItemProps[] | null>(null);
@@ -21,15 +22,40 @@ export default function BlogList() {
             .catch(() => setLoading(false));
     }, []);
 
-    if (loading) return <BlogSkeleton />;
-
-    if (!blogs || blogs.length === 0) return <p>No blogs found.</p>;
-
     return (
-        <div>
-            {blogs.map((blogItem) => (
-                <BlogListItem key={blogItem.id} {...blogItem} />
-            ))}
-        </div>
+        <AnimatePresence mode="wait">
+            {loading ? (
+                <motion.div
+                    key="loading"
+                    className="flex h-64 items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <Loading />
+                </motion.div>
+            ) : !blogs || blogs.length === 0 ? (
+                <motion.p
+                    key="empty"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="text-center text-gray-500"
+                >
+                    No blogs found.
+                </motion.p>
+            ) : (
+                <motion.div
+                    key="list"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    {blogs.map((blogItem) => (
+                        <BlogListItem key={blogItem.id} {...blogItem} />
+                    ))}
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 }
