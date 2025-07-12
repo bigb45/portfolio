@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import ProjectCard from "../projects/projectCard";
+import ClickEffect from "@/components/clickMarker";
 
 function Page() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -108,9 +109,11 @@ function Page() {
     }, [scrollTop, projectDates]);
 
     return (
-        <div className="flex h-[calc(100vh-8rem)]">
-            {/* Timeline */}
-            {/* <div ref={timelineRef} className="relative w-10 bg-gray-200">
+        <>
+            <ClickEffect />
+            <div className="flex h-[calc(100vh-8rem)]">
+                {/* Timeline */}
+                {/* <div ref={timelineRef} className="relative w-10 bg-gray-200">
                 <div
                     className="absolute left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-red-500"
                     style={{
@@ -118,92 +121,93 @@ function Page() {
                     }}
                 />
             </div> */}
-            <div
-                className="relative -left-20 flex h-[calc(100vh-8rem)] w-10 flex-col items-center justify-center"
-                ref={timelineRef}
-            >
-                {/* top circle */}
                 <div
-                    className={`h-[24px] w-[24px] rounded-full border-[1px] border-black bg-black`}
-                ></div>
-
-                {/* track */}
-                <div className="h-full w-[1px] bg-slate-400"></div>
-
-                {projectDates.map((date, i) => {
-                    const relativeTop =
-                        (new Date(date).getTime() - endDate) /
-                        (startDate - endDate);
-                    const top = relativeTop * timelineHeight;
-
-                    return (
-                        <div
-                            key={i}
-                            id={`project-${i}`}
-                            className="absolute text-[10px] text-gray-700"
-                            style={{ top }}
-                        >
-                            <div className="h-[24px] w-[24px] rounded-full border border-black bg-white shadow-none transition-all duration-200 hover:bg-gray-200 hover:shadow-lg"></div>
-                        </div>
-                    );
-                })}
-                {/* bottom circle */}
-                <div
-                    style={{ top: `${timelineHeight}px` }}
-                    className={`absolute bottom-0 h-[24px] w-[24px] rounded-full border-black bg-black`}
-                ></div>
-
-                {/* slider */}
-                <div
-                    ref={timelineThumbRef}
-                    className="myshadow-md absolute left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-red-500"
-                    style={{
-                        top:
-                            (scrollTop / scrollHeight) * timelineHeight +
-                            topCircleOffset,
-                    }}
+                    className="relative -left-20 flex h-[calc(100vh-8rem)] w-10 flex-col items-center justify-center"
+                    ref={timelineRef}
                 >
-                    {visibleDate && (
-                        <div className="absolute left-0 top-1/2 mr-2 -translate-x-[calc(100%_+_4px)] -translate-y-1/2 whitespace-nowrap text-sm">
-                            {visibleDate}
-                        </div>
-                    )}{" "}
-                    {/* {projectDates[0]} */}
-                </div>
-                {/* {projectDates.map((projectDate) => {
+                    {/* top circle */}
+                    <div
+                        className={`h-[24px] w-[24px] rounded-full border-[1px] border-black bg-black`}
+                    ></div>
+
+                    {/* track */}
+                    <div className="h-full w-[1px] bg-slate-400"></div>
+
+                    {projectDates.map((date, i) => {
+                        const relativeTop =
+                            (new Date(date).getTime() - endDate) /
+                            (startDate - endDate);
+                        const top = relativeTop * timelineHeight;
+
+                        return (
+                            <div
+                                key={i}
+                                id={`project-${i}`}
+                                className="absolute text-[10px] text-gray-700"
+                                style={{ top }}
+                            >
+                                <div className="h-[24px] w-[24px] rounded-full border border-black bg-white shadow-none transition-all duration-200 hover:bg-gray-200 hover:shadow-lg"></div>
+                            </div>
+                        );
+                    })}
+                    {/* bottom circle */}
+                    <div
+                        style={{ top: `${timelineHeight}px` }}
+                        className={`absolute bottom-0 h-[24px] w-[24px] rounded-full border-black bg-black`}
+                    ></div>
+
+                    {/* slider */}
+                    <div
+                        ref={timelineThumbRef}
+                        className="myshadow-md absolute left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-red-500"
+                        style={{
+                            top:
+                                (scrollTop / scrollHeight) * timelineHeight +
+                                topCircleOffset,
+                        }}
+                    >
+                        {visibleDate && (
+                            <div className="absolute left-0 top-1/2 mr-2 -translate-x-[calc(100%_+_4px)] -translate-y-1/2 whitespace-nowrap text-sm">
+                                {visibleDate}
+                            </div>
+                        )}{" "}
+                        {/* {projectDates[0]} */}
+                    </div>
+                    {/* {projectDates.map((projectDate) => {
                     const relativeDistanceFromTop =
                         (projectDate - endDate) / (startDate - endDate);
 
                     const top = relativeDistanceFromTop * timelineHeight;
                 })} */}
-            </div>
+                </div>
 
-            {/* Scrollable content */}
-            <div
-                className="no-scrollbar min-w-0 flex-1 overflow-y-scroll"
-                ref={containerRef}
-            >
+                {/* Scrollable content */}
                 <div
-                    className="space-y-4"
-                    style={{
-                        position: "relative",
-                    }}
+                    className="no-scrollbar min-w-0 flex-1 overflow-y-scroll"
+                    ref={containerRef}
                 >
-                    {projectDates.map((projectDate, index) => {
-                        return (
-                            <div></div>
-                            // <ProjectCard
-                            //     key={index}
-                            //     id={""}
-                            //     title={""}
-                            //     description={""}
-                            //     isOngoing={false}
-                            // />
-                        );
-                    })}
+                    <div
+                        className="space-y-4"
+                        style={{
+                            position: "relative",
+                        }}
+                    >
+                        {projectDates.map((projectDate, index) => {
+                            return (
+                                <div></div>
+                                // <ProjectCard
+                                //     key={index}
+                                //     id={""}
+                                //     title={""}
+                                //     description={""}
+                                //     isOngoing={false}
+                                // />
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
