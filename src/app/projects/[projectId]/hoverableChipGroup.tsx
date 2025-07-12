@@ -81,7 +81,7 @@ function TechnologyChipGroup({
                 onMouseEnter={() => showTooltip(shownTooltipIndex!)}
                 onMouseLeave={scheduleHideTooltip}
                 tooltipRef={tooltipRef}
-                className={`left-0 z-10 mt-4 flex opacity-0 transition-all duration-[200ms] ${
+                className={`left-0 z-10 mt-4 flex opacity-0 transition-all duration-[200ms] pb-10${
                     isVisible
                         ? "pointer-events-auto visible opacity-100"
                         : "pointer-events-none invisible opacity-0"

@@ -56,7 +56,7 @@ function Project() {
             </div>
         );
     return (
-        <div className="mt-10 flex flex-col gap-4 lg:flex-row">
+        <div className="mt-10 flex flex-col gap-4 pb-[300px] lg:flex-row">
             {/* text content */}
             <div className="flex-1 flex-col">
                 <p className="order-1 text-[34px] font-bold">
@@ -69,7 +69,7 @@ function Project() {
                     images={project!.images}
                 />
 
-                <p className="text-[18px]">{project?.subtitle}</p>
+                <p className="text-[18px] italic">{project?.subtitle}</p>
                 <p className="mt-4 text-[18px] font-normal text-[#6D6D6D]">
                     {project?.description}
                 </p>
