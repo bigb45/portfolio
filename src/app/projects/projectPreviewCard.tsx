@@ -22,7 +22,10 @@ function ProjectPreviewCard({
     href: string;
 }) {
     return (
-        <div className="flex h-[360px] max-w-[400px] flex-col items-center justify-center rounded-xl border border-[#D9D9D9] p-3">
+        <Link
+            href={href}
+            className="flex h-[360px] w-full max-w-[400px] flex-col items-center justify-center rounded-xl border border-[#D9D9D9] p-3"
+        >
             <p className="mb-4 w-full pb-6 text-center text-[28px] font-semibold">
                 {title}
             </p>
@@ -64,7 +67,7 @@ function ProjectPreviewCard({
                 See more details{" "}
                 <ArrowIcon className="origin-left transition-transform duration-[250ms] group-hover/clickable:scale-x-125" />
             </Link>
-        </div>
+        </Link>
     );
 }
 
