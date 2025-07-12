@@ -20,11 +20,11 @@ function BreadcrumbNavigation() {
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         {isOnHomePage ? (
-                            <BreadcrumbPage className="text-lg">
+                            <BreadcrumbPage className="text-[16px]">
                                 Home
                             </BreadcrumbPage>
                         ) : (
-                            <BreadcrumbLink href="/" className="text-lg">
+                            <BreadcrumbLink href="/" className="text-[16px]">
                                 Home
                             </BreadcrumbLink>
                         )}
@@ -37,12 +37,12 @@ function BreadcrumbNavigation() {
                             <Fragment key={segment}>
                                 <BreadcrumbItem>
                                     {isLastItem ? (
-                                        <BreadcrumbPage className="text-lg">
+                                        <BreadcrumbPage className="text-[16px] text-[#fd6463]">
                                             {segment}
                                         </BreadcrumbPage>
                                     ) : (
                                         <BreadcrumbLink
-                                            className="text-lg"
+                                            className="text-[16px]"
                                             href={`/${segment}`}
                                         >
                                             {segment}
