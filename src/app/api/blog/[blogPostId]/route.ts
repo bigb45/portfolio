@@ -14,6 +14,7 @@ export async function GET(
             blogSubtitle: true,
             publishDate: true,
             blogText: true,
+            category: true,
         },
     });
     return NextResponse.json(blog);

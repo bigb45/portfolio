@@ -1,7 +1,7 @@
 import React from "react";
 
-function page() {
+function CaseStudies() {
     return <div>Cooking, come back later.</div>;
 }
 
-export default page;
+export default CaseStudies;

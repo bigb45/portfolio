@@ -9,9 +9,10 @@ export interface BlogObject {
     blogText: string;
     blogSubtitle: string;
     publishDate: Date;
+    category: string;
 }
 
-function BlogBlog() {
+function BlogComponent() {
     const [blog, setBlog] = useState<BlogObject | null>();
     const [loading, setLoading] = useState(true);
 
@@ -21,6 +22,7 @@ function BlogBlog() {
         fetch(`/api${blogId}`)
             .then((res) => res.json())
             .then((data) => {
+                console.log({ data });
                 setBlog(data);
                 setLoading(false);
             });
@@ -56,4 +58,4 @@ function BlogBlog() {
     );
 }
 
-export default BlogBlog;
+export default BlogComponent;
