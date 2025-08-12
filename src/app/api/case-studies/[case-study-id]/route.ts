@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(): Promise<NextResponse> {
     try {
-        const res = await prisma.project.findMany({
+        const res = await prisma.case_study.findMany({
             select: {
                 id: true,
                 title: true,
@@ -13,7 +13,7 @@ export async function GET(): Promise<NextResponse> {
         });
         return NextResponse.json(res);
     } catch (error) {
-        console.error("GET /api/projects failed:", error);
+        console.error("GET /api/case-study failed:", error);
         return new NextResponse("Internal Server Error", { status: 500 });
     }
 }
