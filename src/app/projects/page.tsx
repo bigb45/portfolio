@@ -46,7 +46,7 @@ function Projects() {
                     ) : (
                         <motion.div
                             key="loaded"
-                            className="mx-auto mt-8 flex w-full flex-col items-center gap-10 px-4 sm:px-8 lg:grid lg:grid-cols-2"
+                            className="mx-auto mt-8 flex w-full flex-col items-center gap-10 px-4 pb-10 sm:px-8 lg:grid lg:grid-cols-2"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}

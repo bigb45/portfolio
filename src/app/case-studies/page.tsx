@@ -25,40 +25,44 @@ function CaseStudies() {
     }, []);
 
     return (
-        <AnimatePresence mode="wait">
-            {loading ? (
-                <motion.div
-                    key="loading"
-                    className="flex h-64 items-center justify-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <Loading />
-                </motion.div>
-            ) : !caseStudies || caseStudies.length === 0 ? (
-                <motion.p
-                    key="empty"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center text-gray-500"
-                >
-                    No Case Studies found.
-                </motion.p>
-            ) : (
-                <motion.div
-                    key="list"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    {caseStudies.map((caseStudy) => (
-                        <CaseStudyCard key={caseStudy.id} {...caseStudy} />
-                    ))}
-                </motion.div>
-            )}
-        </AnimatePresence>
+        <div className="relative mb-10 mt-20 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
+            Case studies:
+            <AnimatePresence mode="wait">
+                {loading ? (
+                    <motion.div
+                        key="loading"
+                        className="flex h-64 items-center justify-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <Loading />
+                    </motion.div>
+                ) : !caseStudies || caseStudies.length === 0 ? (
+                    <motion.p
+                        key="empty"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="text-center text-gray-500"
+                    >
+                        No Case Studies found.
+                    </motion.p>
+                ) : (
+                    <motion.div
+                        key="list"
+                        className="mx-auto mt-8 flex w-full flex-col items-center gap-4 px-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        {caseStudies.map((caseStudy) => (
+                            <CaseStudyCard key={caseStudy.id} {...caseStudy} />
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
     );
 }
 
