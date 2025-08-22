@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer components {
   .waving-hand {
     transform-origin: 50px 50px;

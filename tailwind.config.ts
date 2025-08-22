@@ -6,7 +6,6 @@ const config: Config = {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/**/*.{js,jsx,ts,tsx}",
-        "./nodemodules/ @yourstorybooklib/**/*.{js,jsx,ts,tsx}",
     ],
     theme: {
         extend: {
