@@ -4,7 +4,7 @@ import { BlogObject } from "./page";
 import { BlogListItemProps } from "@/app/components/BlogItem";
 import { formatDate } from "@/app/utils";
 
-export default function Blog({
+export default function BlogComponent({
     blogText,
     publishDate,
     blogTitle,

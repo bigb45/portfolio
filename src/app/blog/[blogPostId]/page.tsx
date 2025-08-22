@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Blog from "./blog";
 import Loading from "@/app/loading";
 import { AnimatePresence, motion } from "framer-motion";
+import BlogComponent from "./blog";
 
 export interface BlogObject {
     blogTitle: string;
@@ -12,7 +12,7 @@ export interface BlogObject {
     category: string;
 }
 
-function BlogComponent() {
+function BlogPage() {
     const [blog, setBlog] = useState<BlogObject | null>();
     const [loading, setLoading] = useState(true);
 
@@ -50,7 +50,7 @@ function BlogComponent() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Blog {...blog!} />
+                        <BlogComponent {...blog!} />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -58,4 +58,4 @@ function BlogComponent() {
     );
 }
 
-export default BlogComponent;
+export default BlogPage;

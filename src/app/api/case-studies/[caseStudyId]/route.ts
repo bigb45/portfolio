@@ -1,9 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(
+    req: Request,
+    {
+        params,
+    }: {
+        params: { caseStudyId: string };
+    },
+): Promise<NextResponse> {
     try {
-        const res = await prisma.case_study.findMany({
+        console.log({ params });
+        const res = await prisma.case_study.findUnique({
+            where: {
+                id: params.caseStudyId,
+            },
             select: {
                 id: true,
                 title: true,

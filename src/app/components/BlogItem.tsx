@@ -1,7 +1,5 @@
-"use client";
 import { Divide, Icon, Pin } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect } from "react";
 import { formatDate } from "../utils";
 
 export interface BlogListItemProps {

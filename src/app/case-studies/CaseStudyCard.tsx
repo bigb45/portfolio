@@ -1,5 +1,6 @@
 import React from "react";
 import { formatDate } from "../utils";
+import Link from "next/link";
 
 export interface CaseStudyCardProps {
     id: string;
@@ -17,10 +18,14 @@ function CaseStudyCard({
     publishDate,
 }: CaseStudyCardProps) {
     return (
-        <div className="m-4 flex flex-col border border-black">
-            <p>{title}</p>
-            <p> {subtitle}</p>
-            <p> Published on {formatDate(publishDate)}</p>
+        <div>
+            <Link href={`${id}`}>
+                <div className="m-4 flex flex-col border border-black">
+                    <p>{title}</p>
+                    <p> {subtitle}</p>
+                    {/* <p> Published on {formatDate(publishDate)}</p> */}
+                </div>
+            </Link>
         </div>
     );
 }

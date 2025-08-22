@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 const grotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -22,7 +23,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className="${inter.className} mx-auto max-w-2xl select-none px-2 font-grotesk lg:max-w-4xl">
+            <body
+                className={`${inter.className} font-grotesk mx-auto max-w-2xl px-2 select-none lg:max-w-4xl`}
+            >
                 <Header />
                 {children}
             </body>
