@@ -14,13 +14,7 @@ function CaseStudy({
     publishDate,
     category,
 }: CaseStudyProps) {
-    
-    return (
-        <div>
-            caseStudy
-            {title}
-        </div>
-    );
+    return <div>{title}</div>;
 }
 
 export default CaseStudy;
