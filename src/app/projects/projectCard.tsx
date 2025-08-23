@@ -123,7 +123,7 @@ export function StackedImages({ images }: { images: string[] }) {
     if (images.length === 1) {
         return (
             <div className="group/images relative h-32 w-32">
-                <div className="myshadow-md absolute top-[20%] flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-transform duration-500 ease-out group-hover/images:scale-[103%]">
+                <div className="myshadow-md absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg bg-gray-200 transition-transform duration-500 ease-out group-hover/images:scale-[103%]">
                     <img
                         src={images[0]}
                         alt=""
@@ -135,9 +135,9 @@ export function StackedImages({ images }: { images: string[] }) {
     }
     if (images.length === 2) {
         return (
-            <div className="group/images relative h-32 w-32">
+            <div className="group/images relative mr-4 h-32 w-32">
                 {/* Top card */}
-                <div className="myshadow-md absolute -left-[25%] top-4 flex h-24 w-24 rotate-[6deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 ease-in-out group-hover/images:translate-x-2 group-hover/images:rotate-[8deg]">
+                <div className="myshadow-md absolute top-4 flex h-24 w-24 -rotate-[6deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 ease-in-out group-hover/images:-translate-x-2 group-hover/images:-rotate-[8deg]">
                     <img
                         src={images[0]}
                         alt=""
@@ -146,7 +146,7 @@ export function StackedImages({ images }: { images: string[] }) {
                 </div>
 
                 {/* Bottom card */}
-                <div className="myshadow-md absolute -left-[40%] top-4 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 ease-in-out group-hover/images:-translate-x-2 group-hover/images:-rotate-[3deg]">
+                <div className="myshadow-md absolute left-[25%] top-4 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 ease-in-out group-hover/images:translate-x-2 group-hover/images:rotate-[3deg]">
                     <img
                         src={images[1]}
                         alt=""
@@ -158,22 +158,27 @@ export function StackedImages({ images }: { images: string[] }) {
     }
     if (images.length >= 3) {
         return (
-            <div className="group/images relative mr-10 h-32 w-32 transition-all duration-300">
-                <div className="myshadow-md absolute left-[40%] top-4 z-0 flex h-24 w-24 rotate-[8deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-300 group-hover/images:top-3 group-hover/images:rotate-[10deg]">
+            <div className="group/images relative mr-4 h-32 w-32">
+                {/* Right card */}
+                <div className="myshadow-md absolute left-[25%] top-4 z-0 flex h-24 w-24 rotate-[8deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-300 group-hover/images:top-3 group-hover/images:rotate-[10deg]">
                     <img
                         src={images[1]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
                 </div>
-                <div className="z-1 myshadow-md absolute left-2 top-2 z-20 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-all duration-[600ms] group-hover/images:-top-0">
+
+                {/* Middle card */}
+                <div className="myshadow-md absolute top-2 z-20 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-all duration-[600ms] group-hover/images:top-0">
                     <img
                         src={images[0]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
                 </div>
-                <div className="myshadow-md absolute -left-[40%] top-4 z-0 flex h-24 w-24 -rotate-[6deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 group-hover/images:top-3 group-hover/images:-rotate-[8deg]">
+
+                {/* Left card */}
+                <div className="myshadow-md absolute -left-[30%] top-4 z-0 flex h-24 w-24 -rotate-[6deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 group-hover/images:top-3 group-hover/images:-rotate-[8deg]">
                     <img
                         src={images[2]}
                         alt=""

@@ -20,29 +20,33 @@ function CaseStudyCard({
     publishDate,
 }: CaseStudyCardProps) {
     return (
-        <Link href={id} className="group relative flex w-full justify-center">
-            <div className="absolute left-0 top-1/2 -z-10 flex h-10 w-full -translate-y-1/2 cursor-pointer items-center justify-start gap-2 text-[18px] font-light text-[#FD6463]">
-                Read <ArrowIcon />{" "}
-            </div>
+        <div className="group relative flex w-full justify-center">
             {/* card */}
-            <div className="ml-auto flex w-full origin-right items-center justify-between rounded-xl border border-[#D9D9D9] bg-white p-3 transition-all duration-300 ease-out group-hover:w-[calc(100%-100px)]">
+            <Link
+                href={id}
+                className="ml-auto flex w-full items-end justify-between rounded-xl border border-[#D9D9D9] p-4"
+            >
                 {/* Title */}
-                <div className="mr-10 flex w-[400px] flex-col items-start justify-center">
-                    <p className="pb-6 text-[28px] font-semibold">{title}</p>
-                    <div className="text-[18px] font-normal leading-normal text-[#4D4D4D]">
-                        {subtitle}
+                <div className="mr-10 flex h-full w-[400px] flex-col items-start justify-between">
+                    <div>
+                        <p className="pb-6 text-[28px] font-semibold">
+                            {title}
+                        </p>
+                        <div className="text-[18px] font-normal leading-normal text-[#4D4D4D]">
+                            {subtitle}
+                        </div>
+                    </div>
+                    <div className="flex cursor-pointer items-center justify-center gap-2 rounded-xl p-4 text-[18px] font-light text-[#FD6463] opacity-0 transition-all duration-200 hover:bg-neutral-100 group-hover:opacity-100">
+                        Read <ArrowIcon />{" "}
                     </div>
                 </div>
 
                 {/* Images */}
-                <Link
-                    className="group/parent relative mb-8 h-[140px] cursor-pointer"
-                    href={id}
-                >
+                <div className="group/parent relative flex h-full cursor-pointer items-center justify-center">
                     <StackedImages images={images} />
-                </Link>
-            </div>
-        </Link>
+                </div>
+            </Link>
+        </div>
     );
 }
 

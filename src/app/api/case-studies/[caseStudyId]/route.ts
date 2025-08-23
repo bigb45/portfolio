@@ -20,6 +20,9 @@ export async function GET(
                 title: true,
                 subtitle: true,
                 images: true,
+                studyContent: true,
+                category: true,
+                publishDate: true,
             },
         });
         return NextResponse.json(res);

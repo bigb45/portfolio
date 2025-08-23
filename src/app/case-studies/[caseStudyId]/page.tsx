@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import CaseStudy, { CaseStudyProps } from "./CaseStudy";
 import Loading from "../../loading";
+import { useRouter } from "next/navigation";
 
 function CaseStudyPage() {
     const [caseStudy, setCaseStudy] = useState<CaseStudyProps | null>();
@@ -21,6 +22,8 @@ function CaseStudyPage() {
                 setLoading(false);
             });
     }, []);
+
+    const router = useRouter();
 
     return (
         <div className="items-center overflow-hidden">
@@ -44,7 +47,13 @@ function CaseStudyPage() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <CaseStudy {...caseStudy!} />
+                        <CaseStudy
+                            {...caseStudy!}
+                            onBack={() => {
+                                // TODO: move this to a constants.ts file
+                                router.push("/case-studies");
+                            }}
+                        />
                     </motion.div>
                 )}
             </AnimatePresence>

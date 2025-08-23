@@ -70,11 +70,11 @@ model case_study {
   problem_statement String   @db.VarChar
   description       String   @db.VarChar
   solution          String   @db.VarChar
-  study_content     String   @db.VarChar
+  studyContent     String   @db.VarChar @map("study_content")
   conclusion        String   @db.VarChar
   images            String[]
   is_public         Boolean  @default(false)
-  created_at        DateTime @default(now()) @db.Timestamptz(6)
+  publishDate       DateTime @default(now()) @db.Timestamptz(6) @map("created_at")
   category          String?
   color             String?
   tech_stack        String[]

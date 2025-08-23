@@ -26,7 +26,7 @@ function CaseStudies() {
 
     return (
         <div className="relative mb-10 mt-20 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
-            Case studies:
+            {!caseStudies || caseStudies.length === 0 ? "" : "Case studies:"}
             <AnimatePresence mode="wait">
                 {loading ? (
                     <motion.div
@@ -39,15 +39,17 @@ function CaseStudies() {
                         <Loading />
                     </motion.div>
                 ) : !caseStudies || caseStudies.length === 0 ? (
-                    <motion.p
+                    <motion.div
                         key="empty"
+                        className="flex flex-1 flex-col items-center justify-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="text-center text-gray-500"
                     >
-                        No Case Studies found.
-                    </motion.p>
+                        <motion.p className="text-center text-3xl text-gray-500">
+                            No Case Studies found.
+                        </motion.p>
+                    </motion.div>
                 ) : (
                     <motion.div
                         key="list"

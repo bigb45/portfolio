@@ -11,7 +11,13 @@ export function formatDate(date: Date): string {
     // const year = date.getFullYear().toString().slice(-2)
 
     // const formattedDate = `${day}, ${month} '${year}`
-    return formatter.format(new Date(date));
+    try {
+        const formattedDate = formatter.format(new Date(date));
+        return formattedDate;
+    } catch (e: any) {
+        console.log({ e });
+        return "Invalid date";
+    }
 }
 
 // method and interface to convert BigInt to String

@@ -13,7 +13,7 @@ export default function BlogComponent({
 }: BlogObject) {
     return (
         <div className="mx-auto flex max-w-3xl flex-col items-center justify-center gap-4 px-4 py-8">
-            <div className="w-fit rounded-full bg-gray-200 px-4 py-1 font-medium text-[#374151]">
+            <div className="w-fit rounded-full bg-gray-200 px-3 py-0.5 font-medium text-[#374151]">
                 {category}
             </div>
 
