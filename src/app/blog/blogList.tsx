@@ -40,7 +40,7 @@ export default function BlogList() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="text-center text-gray-500"
+                    className="flex-1 text-center text-3xl text-gray-500"
                 >
                     No blogs found.
                 </motion.p>

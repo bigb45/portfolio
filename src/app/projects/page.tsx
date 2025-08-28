@@ -31,7 +31,8 @@ function Projects() {
         <>
             <ClickEffect />
             <div className="relative mb-10 mt-20 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
-                Projects:
+                {!projects || projects.length === 0 ? "" : "Projects:"}
+
                 <AnimatePresence mode="wait">
                     {isLoading ? (
                         <motion.div
@@ -43,6 +44,10 @@ function Projects() {
                         >
                             <Loading />
                         </motion.div>
+                    ) : !projects || projects.length === 0 ? (
+                        <motion.p className="flex-1 text-center text-3xl text-gray-500">
+                            No Projects found.
+                        </motion.p>
                     ) : (
                         <motion.div
                             key="loaded"

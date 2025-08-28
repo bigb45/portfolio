@@ -46,7 +46,7 @@ function CaseStudies() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <motion.p className="text-center text-3xl text-gray-500">
+                        <motion.p className="flex-1 text-center text-3xl text-gray-500">
                             No Case Studies found.
                         </motion.p>
                     </motion.div>
