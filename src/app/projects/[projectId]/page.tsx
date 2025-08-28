@@ -4,7 +4,7 @@ import TechnologyChipGroup from "./hoverableChipGroup";
 import Gallery from "./gallery";
 import { ProjectProps } from "../projectCard";
 import { useParams } from "next/navigation";
-import LoadingSpinner from "@/components/ui/loadingSpinner";
+import Loading from "@/app/loading";
 
 function Project() {
     const params = useParams();
@@ -52,7 +52,7 @@ function Project() {
     if (isLoading)
         return (
             <div className="flex h-full w-full items-center justify-center">
-                <LoadingSpinner />
+                <Loading />
             </div>
         );
     return (
