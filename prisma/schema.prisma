@@ -19,7 +19,7 @@ model blog {
   publishDate  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   category     String?
   color        String?
-  slug         String?
+  slug         String   @unique
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -70,11 +70,11 @@ model case_study {
   problem_statement String   @db.VarChar
   description       String   @db.VarChar
   solution          String   @db.VarChar
-  studyContent     String   @db.VarChar @map("study_content")
+  studyContent      String   @map("study_content") @db.VarChar
   conclusion        String   @db.VarChar
   images            String[]
   is_public         Boolean  @default(false)
-  publishDate       DateTime @default(now()) @db.Timestamptz(6) @map("created_at")
+  publishDate       DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   category          String?
   color             String?
   tech_stack        String[]

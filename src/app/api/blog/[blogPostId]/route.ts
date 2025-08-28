@@ -7,7 +7,7 @@ export async function GET(
 ) {
     const blog = await prisma.blog.findUnique({
         where: {
-            id: params.blogPostId,
+            slug: params.blogPostId,
         },
         select: {
             blogTitle: true,
@@ -15,6 +15,7 @@ export async function GET(
             publishDate: true,
             blogText: true,
             category: true,
+            slug: true,
         },
     });
     return NextResponse.json(blog);
