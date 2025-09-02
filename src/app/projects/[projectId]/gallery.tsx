@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import ImageOverlay from "@/components/imageOverlay";
 export default function Gallery({
     images,
     className,
@@ -10,10 +11,19 @@ export default function Gallery({
     className: string;
     mainImageClassName?: string;
 }) {
+    const [showOverlay, setShowOverlay] = useState(false);
     const [mainImg, setMainImg] = useState(images[0]);
 
     return (
         <div className={`${className} `}>
+            {showOverlay && (
+                <ImageOverlay
+                    images={images}
+                    onClose={() => {
+                        setShowOverlay(false);
+                    }}
+                />
+            )}
             <div className="flex items-center justify-center">
                 <div className="inline-block max-w-full rounded-xl">
                     <div className="max-w-[calc(140px*4+24px)]">
@@ -21,7 +31,10 @@ export default function Gallery({
                         {/* Main image */}
                         <div
                             className={`${mainImageClassName} relative mb-6 flex justify-center rounded-lg`}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                                setShowOverlay(true);
+                                e.stopPropagation();
+                            }}
                         >
                             <img
                                 draggable={false}

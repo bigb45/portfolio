@@ -37,21 +37,21 @@ function ProjectPreviewCard({
                 {/* Left image */}
                 <img
                     draggable={false}
-                    className="myshadow-md absolute -left-16 top-4 h-[120px] w-[120px] -rotate-[7deg] rounded-lg transition-all duration-300 group-hover/parent:-translate-x-3 group-hover/parent:-rotate-[10deg]"
+                    className="myshadow-md absolute -left-16 top-4 h-[120px] w-[120px] -rotate-[7deg] rounded-lg object-cover transition-all duration-300 group-hover/parent:-translate-x-3 group-hover/parent:-rotate-[10deg]"
                     src={images![0]}
                     alt=""
                 />
                 {/* Right image */}
                 <img
                     draggable={false}
-                    className="myshadow-md absolute -right-16 top-4 h-[120px] w-[120px] rotate-[8deg] rounded-lg transition-all duration-300 group-hover/parent:translate-x-3 group-hover/parent:rotate-[10deg]"
+                    className="myshadow-md absolute -right-16 top-4 h-[120px] w-[120px] rotate-[8deg] rounded-lg object-cover transition-all duration-300 group-hover/parent:translate-x-3 group-hover/parent:rotate-[10deg]"
                     src={images![1]}
                     alt=""
                 />
                 {/* Center image */}
                 <img
                     draggable={false}
-                    className="relative z-10 h-[130px] w-[130px] rounded-lg shadow-lg transition-all duration-500 group-hover/parent:-translate-y-3"
+                    className="relative z-10 h-[130px] w-[130px] rounded-lg object-cover shadow-lg transition-all duration-500 group-hover/parent:-translate-y-3"
                     src={images![2]}
                     alt=""
                 />
