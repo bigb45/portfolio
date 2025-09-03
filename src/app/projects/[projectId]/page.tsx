@@ -5,6 +5,8 @@ import Gallery from "./gallery";
 import { ProjectProps } from "../projectCard";
 import { useParams } from "next/navigation";
 import Loading from "@/app/loading";
+import { FaGithub, FaGooglePlay, FaLink } from "react-icons/fa";
+import Link from "next/link";
 
 function Project() {
     const params = useParams();
@@ -73,6 +75,57 @@ function Project() {
                 <p className="mt-4 text-[18px] font-normal text-[#6D6D6D]">
                     {project?.description}
                 </p>
+
+                {project?.githubLink && (
+                    <Link
+                        target="_blank"
+                        href={project.githubLink}
+                        className="group mt-4 inline-flex items-center gap-2"
+                    >
+                        {" "}
+                        <FaGithub
+                            size={24}
+                            className="fill-gray-500 transition-all duration-100 group-hover:fill-gray-800"
+                        />
+                        <div className="flex w-fit flex-row items-center gap-1 py-4 text-gray-500 decoration-wavy underline-offset-4 transition-all duration-100 group-hover:text-gray-800">
+                            {project.githubLink}
+                        </div>
+                    </Link>
+                )}
+                {project?.playstoreLink && (
+                    <Link
+                        target="_blank"
+                        href={project.playstoreLink}
+                        className="group mt-4 inline-flex items-center gap-2"
+                    >
+                        {" "}
+                        <FaGooglePlay
+                            size={24}
+                            className="fill-gray-500 transition-all duration-100 group-hover:fill-gray-800"
+                        />
+                        <div className="flex w-fit flex-row items-center gap-1 py-4 text-gray-500 decoration-wavy underline-offset-4 transition-all duration-100 group-hover:text-gray-800">
+                            {project.playstoreLink}
+                        </div>
+                    </Link>
+                )}
+
+                {project?.otherLink && (
+                    <Link
+                        target="_blank"
+                        href={project.otherLink}
+                        className="group mt-4 inline-flex items-center gap-2"
+                    >
+                        {" "}
+                        <FaLink
+                            size={24}
+                            className="fill-gray-500 transition-all duration-100 group-hover:fill-gray-800"
+                        />
+                        <div className="flex w-fit flex-row items-center gap-1 py-4 text-gray-500 decoration-wavy underline-offset-4 transition-all duration-100 group-hover:text-gray-800">
+                            {project.otherLink}
+                        </div>
+                    </Link>
+                )}
+
                 <div className="mb-10 mt-10 flex flex-col gap-y-2 text-[18px]">
                     Technologies used:
                     <TechnologyChipGroup
