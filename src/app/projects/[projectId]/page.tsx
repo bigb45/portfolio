@@ -50,6 +50,7 @@ function Project() {
             setMainImg(project.images[0]);
         }
     }, [project]);
+    console.log("images:", project?.images);
 
     if (isLoading)
         return (
@@ -65,11 +66,13 @@ function Project() {
                     {project?.title}
                 </p>
 
-                <Gallery
-                    mainImageClassName="mx-auto w-1/3"
-                    className="w-full lg:hidden"
-                    images={project!.images}
-                />
+                {project?.images && project.images.length > 0 && (
+                    <Gallery
+                        mainImageClassName="mx-auto w-1/3"
+                        className="w-full lg:hidden"
+                        images={project!.images}
+                    />
+                )}
 
                 <p className="text-[18px] italic">{project?.subtitle}</p>
                 <p className="mt-4 text-[18px] font-normal text-[#6D6D6D]">
@@ -135,12 +138,12 @@ function Project() {
             </div>
 
             {/* gallery */}
-            {/* {project?.images && ( */}
-            <Gallery
-                className="hidden w-1/3 lg:block"
-                images={project!.images}
-            />
-            {/* )} */}
+            {project?.images && project.images.length > 0 && (
+                <Gallery
+                    className="hidden w-1/3 lg:block"
+                    images={project!.images}
+                />
+            )}
         </div>
     );
 }

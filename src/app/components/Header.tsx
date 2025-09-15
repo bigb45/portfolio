@@ -1,48 +1,49 @@
+"use client";
 import Link from "next/link";
 import BreadcrumbNavigation from "./BreadcrumbNavigation";
+import { Menu, X } from "lucide-react";
+import { FaFistRaised } from "react-icons/fa";
+import NavigationLinks from "./NavigationLink";
+import { useState } from "react";
+import ManifestoDialog from "./ManifestoDialog";
 
 function Header() {
+    const [isManifestoOpen, setIsManifestoOpen] = useState(false);
+
     return (
         <div className="flex flex-col">
             <div className="z-10 mx-auto flex h-20 w-full max-w-2xl items-center justify-between lg:max-w-4xl">
                 <Link
                     href="/"
-                    className="flex-grow text-center font-space text-[48px] lg:text-left"
+                    className="text-center font-space text-[48px] lg:text-left"
                 >
                     Natour
                 </Link>
-                <div className="hidden flex-row gap-4 lg:flex">
-                    <Link href="/blog" className="squiggle text-[18px]">
-                        Blog
-                    </Link>
-                    <Link href="/case-studies" className="squiggle text-[18px]">
-                        Case studies
-                    </Link>
-                    <Link href="/projects" className="squiggle text-[18px]">
-                        Projects
-                    </Link>
-                    <Link href="/" className="squiggle text-[18px]">
-                        Secret
-                    </Link>
-                </div>
+
+                {/* Desktop Navigation - hidden on mobile */}
+                <NavigationLinks
+                    className="hidden flex-row gap-4 lg:flex"
+                    linkClassName="text-[18px]"
+                />
+
+                {/* Manifesto Button - only visible on mobile */}
+                <button
+                    onClick={() => setIsManifestoOpen(true)}
+                    className="rounded-full p-2 hover:bg-red-50 lg:hidden"
+                >
+                    <FaFistRaised size={24} color="red" />
+                </button>
             </div>
+
             <div className="flex w-full justify-around py-3 lg:hidden">
-                <div className="flex gap-3 text-[16px] font-medium text-gray-700">
-                    <Link href="/blog" className="squiggle">
-                        Blog
-                    </Link>
-                    <Link href="/case-studies" className="squiggle">
-                        Case studies
-                    </Link>
-                    <Link href="/projects" className="squiggle">
-                        Projects
-                    </Link>
-                    <Link href="/" className="squiggle">
-                        Secret
-                    </Link>
-                </div>
+                <NavigationLinks className="flex gap-3 text-[16px] font-medium text-gray-700" />
             </div>
-            <BreadcrumbNavigation />
+
+            <BreadcrumbNavigation className="p-1" />
+
+            {isManifestoOpen && (
+                <ManifestoDialog onClose={() => setIsManifestoOpen(false)} />
+            )}
         </div>
     );
 }

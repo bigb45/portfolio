@@ -10,23 +10,23 @@ import {
 } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
 
-function BreadcrumbNavigation() {
+function BreadcrumbNavigation({ className }: { className: string }) {
     const pathName = usePathname();
     const segments = pathName.split("/").filter(Boolean);
     const isOnHomePage = segments.length == 0;
     return (
-        <div>
+        <div className={`${className}`}>
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         {isOnHomePage ? (
-                            <BreadcrumbPage className="text-[12px] lg:text-[14px]">
+                            <BreadcrumbPage className="text-[12px] text-gray-400 lg:text-[14px]">
                                 Home
                             </BreadcrumbPage>
                         ) : (
                             <BreadcrumbLink
                                 href="/"
-                                className="text-[12px] lg:text-[14px]"
+                                className="text-[12px] text-gray-400 lg:text-[14px]"
                             >
                                 Home
                             </BreadcrumbLink>
@@ -45,7 +45,7 @@ function BreadcrumbNavigation() {
                                         </BreadcrumbPage>
                                     ) : (
                                         <BreadcrumbLink
-                                            className="text-[12px] lg:text-[14px]"
+                                            className="text-[12px] text-gray-400 lg:text-[14px]"
                                             href={`/${segment}`}
                                         >
                                             {segment}

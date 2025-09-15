@@ -24,7 +24,7 @@ function BlogPage() {
     return (
         <div className="relative mb-10 mt-20 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
             {blogs && blogs.length !== 0 && (
-                <div className="mb-10 mt-20 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
+                <div className="mb-10 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl">
                     <span className="text-[#fd6463] underline decoration-black decoration-wavy underline-offset-8">
                         Mo&apos;s
                     </span>{" "}

@@ -12,6 +12,8 @@ export interface ProjectData {
     linkIcons: LinkIcon[];
     technologies?: string[];
 }
+// DEPRECATED
+// USE THE NEW PROJECTS
 
 interface LinkIcon {
     displayUrl?: string;

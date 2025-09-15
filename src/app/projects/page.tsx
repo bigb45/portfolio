@@ -31,7 +31,12 @@ function Projects() {
         <>
             <ClickEffect />
             <div className="relative mb-10 mt-20 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
-                {!projects || projects.length === 0 ? "" : "Projects:"}
+                {/* {!projects || projects.length === 0 ? "" : "Projects:"} */}
+                {projects && projects.length !== 0 && (
+                    <div className="mb-10 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl">
+                        Projects:
+                    </div>
+                )}
 
                 <AnimatePresence mode="wait">
                     {isLoading ? (
@@ -45,9 +50,17 @@ function Projects() {
                             <Loading />
                         </motion.div>
                     ) : !projects || projects.length === 0 ? (
-                        <motion.p className="flex-1 text-center text-3xl text-gray-500">
-                            No Projects found.
-                        </motion.p>
+                        <motion.div
+                            key="empty"
+                            className="flex flex-1 flex-col items-center justify-center"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <motion.p className="flex-1 text-center text-3xl text-gray-500">
+                                No Projects found.
+                            </motion.p>
+                        </motion.div>
                     ) : (
                         <motion.div
                             key="loaded"

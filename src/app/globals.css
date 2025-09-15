@@ -15,6 +15,7 @@
 
 body {
     background: rgb(var(--website-background));
+    scrollbar-gutter: stable;
 }
 
 /* @layer utilities {
