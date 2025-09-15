@@ -4,12 +4,22 @@ import BreadcrumbNavigation from "./BreadcrumbNavigation";
 import { Menu, X } from "lucide-react";
 import { FaFistRaised } from "react-icons/fa";
 import NavigationLinks from "./NavigationLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ManifestoDialog from "./ManifestoDialog";
 
 function Header() {
     const [isManifestoOpen, setIsManifestoOpen] = useState(false);
+    useEffect(() => {
+        if (isManifestoOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
 
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isManifestoOpen]);
     return (
         <div className="flex flex-col">
             <div className="z-10 mx-auto flex h-20 w-full max-w-2xl items-center justify-between lg:max-w-4xl">
@@ -34,13 +44,11 @@ function Header() {
                     <FaFistRaised size={24} color="red" />
                 </button>
             </div>
-
             <div className="flex w-full justify-around py-3 lg:hidden">
                 <NavigationLinks className="flex gap-3 text-[16px] font-medium text-gray-700" />
             </div>
-
+            isManifestoOpen
             <BreadcrumbNavigation className="p-1" />
-
             {isManifestoOpen && (
                 <ManifestoDialog onClose={() => setIsManifestoOpen(false)} />
             )}
