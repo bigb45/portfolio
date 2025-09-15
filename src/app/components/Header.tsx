@@ -47,7 +47,6 @@ function Header() {
             <div className="flex w-full justify-around py-3 lg:hidden">
                 <NavigationLinks className="flex gap-3 text-[16px] font-medium text-gray-700" />
             </div>
-            isManifestoOpen
             <BreadcrumbNavigation className="p-1" />
             {isManifestoOpen && (
                 <ManifestoDialog onClose={() => setIsManifestoOpen(false)} />
