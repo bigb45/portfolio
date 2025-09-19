@@ -16,6 +16,7 @@ export default function Home() {
             annotation.show();
         }
     }, []);
+    const shouldShowManifesto = false;
 
     return (
         <div className="relative flex w-full justify-center">
@@ -65,22 +66,24 @@ export default function Home() {
                 </div>
             </main>
 
-            <div className="fixed right-6 top-32 hidden w-64 flex-col justify-start gap-2 overflow-hidden border-[1px] border-red-600 bg-[#1f1f1f] p-4 font-extrabold text-white lg:block">
-                <div className="flex flex-col gap-2 text-lg">
-                    <div className="relative flex gap-2 text-lg">
-                        <FaFistRaised className="absolute left-0 top-0 h-6 w-6 text-red-500" />
-                        <span className="pl-8">Manifesto</span>
+            {shouldShowManifesto && (
+                <div className="fixed right-6 top-32 hidden w-64 flex-col justify-start gap-2 overflow-hidden border-[1px] border-red-600 bg-[#1f1f1f] p-4 font-extrabold text-white lg:block">
+                    <div className="flex flex-col gap-2 text-lg">
+                        <div className="relative flex gap-2 text-lg">
+                            <FaFistRaised className="absolute left-0 top-0 h-6 w-6 text-red-500" />
+                            <span className="pl-8">Manifesto</span>
+                        </div>
+                        <span>
+                            <Manifesto />
+                        </span>
                     </div>
-                    <span>
-                        <Manifesto />
-                    </span>
-                </div>
 
-                <FaFistRaised
-                    className="pointer-events-none absolute bottom-2 right-2 text-7xl text-red-500 opacity-15"
-                    size={400}
-                />
-            </div>
+                    <FaFistRaised
+                        className="pointer-events-none absolute bottom-2 right-2 text-7xl text-red-500 opacity-15"
+                        size={400}
+                    />
+                </div>
+            )}
         </div>
     );
 }

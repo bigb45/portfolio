@@ -9,6 +9,7 @@ import ManifestoDialog from "./ManifestoDialog";
 
 function Header() {
     const [isManifestoOpen, setIsManifestoOpen] = useState(false);
+    const shouldShowManifesto = false;
     useEffect(() => {
         if (isManifestoOpen) {
             document.body.style.overflow = "hidden";
@@ -37,12 +38,15 @@ function Header() {
                 />
 
                 {/* Manifesto Button - only visible on mobile */}
-                <button
-                    onClick={() => setIsManifestoOpen(true)}
-                    className="rounded-full p-2 hover:bg-red-50 lg:hidden"
-                >
-                    <FaFistRaised size={24} color="red" />
-                </button>
+
+                {shouldShowManifesto && (
+                    <button
+                        onClick={() => setIsManifestoOpen(true)}
+                        className="rounded-full p-2 hover:bg-red-50 lg:hidden"
+                    >
+                        <FaFistRaised size={24} color="red" />
+                    </button>
+                )}
             </div>
             <div className="flex w-full justify-around py-3 lg:hidden">
                 <NavigationLinks className="flex gap-3 text-[16px] font-medium text-gray-700" />
