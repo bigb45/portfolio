@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { useExtractColors } from "react-extract-colors";
+import { getS3Url } from "@/lib/utils";
 
 export interface TechnologyChipProps {
     id: string;
@@ -58,8 +59,17 @@ function TechnologyChipGroup({
             ),
         );
     }, [shownTooltipIndex]);
+    const resolvedTechStack = useMemo(
+        () =>
+            techStackDetails.map((tech) => ({
+                ...tech,
+                logo: getS3Url(tech.logo),
+            })),
+        [techStackDetails],
+    );
+
     const { dominantColor } = useExtractColors(
-        techStackDetails[shownTooltipIndex ?? 0].logo,
+        resolvedTechStack[shownTooltipIndex ?? 0].logo,
         {
             format: "hex",
         },
@@ -67,7 +77,7 @@ function TechnologyChipGroup({
 
     return (
         <div ref={parentRef} className="relative flex w-fit flex-wrap gap-4">
-            {techStackDetails.map((technology, i) => (
+            {resolvedTechStack.map((technology, i) => (
                 <TechnologyChip
                     key={i}
                     {...technology}
@@ -90,11 +100,15 @@ function TechnologyChipGroup({
                     transform: `translateX(${offset}px)`,
                     backgroundColor: `${dominantColor ?? "#cacaca"}10`,
                 }}
-                id={techStackDetails[(shownTooltipIndex ?? 0) as number].id}
-                logo={techStackDetails[(shownTooltipIndex ?? 0) as number].logo}
-                name={techStackDetails[(shownTooltipIndex ?? 0) as number].name}
+                id={resolvedTechStack[(shownTooltipIndex ?? 0) as number].id}
+                logo={
+                    resolvedTechStack[(shownTooltipIndex ?? 0) as number].logo
+                }
+                name={
+                    resolvedTechStack[(shownTooltipIndex ?? 0) as number].name
+                }
                 usageText={
-                    techStackDetails[(shownTooltipIndex ?? 0) as number]
+                    resolvedTechStack[(shownTooltipIndex ?? 0) as number]
                         .usageText
                 }
             />

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ArrowIcon from "@/assets/icons/arrow_thin.svg";
 import Link from "next/link";
 import { ProjectProps } from "./projectCard";
+import { getS3Url } from "@/lib/utils";
 
 function ProjectPreviewCard({
     id,
@@ -21,6 +22,11 @@ function ProjectPreviewCard({
     onShowImagesClick: () => void;
     href: string;
 }) {
+    const resolvedImages = useMemo(
+        () => (images ?? []).map((img) => getS3Url(img)),
+        [images],
+    );
+
     return (
         <Link
             href={href}
@@ -29,7 +35,7 @@ function ProjectPreviewCard({
             <p className="mb-4 w-full pb-6 text-center text-[28px] font-semibold">
                 {title}
             </p>
-            {images && images.length >= 3 && (
+            {resolvedImages.length >= 3 && (
                 <div
                     className="group/parent relative mx-auto mb-8 h-[140px] w-fit cursor-pointer"
                     // onClick={onShowImagesClick}
@@ -39,21 +45,21 @@ function ProjectPreviewCard({
                     <img
                         draggable={false}
                         className="myshadow-md absolute -left-16 top-4 h-[120px] w-[120px] -rotate-[7deg] rounded-lg object-cover transition-all duration-300 group-hover/parent:-translate-x-3 group-hover/parent:-rotate-[10deg]"
-                        src={images[0]}
+                        src={resolvedImages[0]}
                         alt=""
                     />
                     {/* Right image */}
                     <img
                         draggable={false}
                         className="myshadow-md absolute -right-16 top-4 h-[120px] w-[120px] rotate-[8deg] rounded-lg object-cover transition-all duration-300 group-hover/parent:translate-x-3 group-hover/parent:rotate-[10deg]"
-                        src={images[1]}
+                        src={resolvedImages[1]}
                         alt=""
                     />
                     {/* Center image */}
                     <img
                         draggable={false}
                         className="relative z-10 h-[130px] w-[130px] rounded-lg object-cover shadow-lg transition-all duration-500 group-hover/parent:-translate-y-3"
-                        src={images[2]}
+                        src={resolvedImages[2]}
                         alt=""
                     />
                 </div>

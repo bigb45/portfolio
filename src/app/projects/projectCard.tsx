@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { TechnologyChipProps } from "./[projectId]/hoverableChipGroup";
+import { getS3Url } from "@/lib/utils";
 
 export interface ProjectProps {
     id: string;
@@ -87,12 +88,16 @@ function ProjectCard({
 // should they expand automatically once in view? should they only expand on click?
 function ExpandedImages({ images }: { images: string[] }) {
     const [selectedImageIndex, setselectedimageIndex] = useState(0);
+    const resolvedImages = useMemo(
+        () => images.map((img) => getS3Url(img)),
+        [images],
+    );
 
     return (
         <div className="relative flex flex-col items-center">
             <div className="mb-4">
                 <img
-                    src={images[selectedImageIndex]}
+                    src={resolvedImages[selectedImageIndex]}
                     alt=""
                     className="myshadow-md max-h-[300px] rounded-[8px] object-cover"
                 />
@@ -100,7 +105,7 @@ function ExpandedImages({ images }: { images: string[] }) {
 
             <div className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 relative w-64 overflow-x-auto overflow-y-clip">
                 <div className="flex min-w-max flex-row space-x-2">
-                    {images.map((imageUrl, index) => (
+                    {resolvedImages.map((imageUrl, index) => (
                         <img
                             src={imageUrl}
                             alt=""
@@ -120,12 +125,16 @@ function ExpandedImages({ images }: { images: string[] }) {
 }
 
 export function StackedImages({ images }: { images: string[] }) {
+    const resolvedImages = useMemo(
+        () => images.map((img) => getS3Url(img)),
+        [images],
+    );
     if (images.length === 1) {
         return (
             <div className="group/images relative h-32 w-32">
                 <div className="myshadow-md absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg bg-gray-200 transition-transform duration-500 ease-out group-hover/images:scale-[103%]">
                     <img
-                        src={images[0]}
+                        src={resolvedImages[0]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
@@ -139,7 +148,7 @@ export function StackedImages({ images }: { images: string[] }) {
                 {/* Top card */}
                 <div className="myshadow-md absolute top-4 flex h-24 w-24 -rotate-[6deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 ease-in-out group-hover/images:-translate-x-2 group-hover/images:-rotate-[8deg]">
                     <img
-                        src={images[0]}
+                        src={resolvedImages[0]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
@@ -148,7 +157,7 @@ export function StackedImages({ images }: { images: string[] }) {
                 {/* Bottom card */}
                 <div className="myshadow-md absolute left-[25%] top-4 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 ease-in-out group-hover/images:translate-x-2 group-hover/images:rotate-[3deg]">
                     <img
-                        src={images[1]}
+                        src={resolvedImages[1]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
@@ -162,7 +171,7 @@ export function StackedImages({ images }: { images: string[] }) {
                 {/* Right card */}
                 <div className="myshadow-md absolute left-[25%] top-4 z-0 flex h-24 w-24 rotate-[8deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-300 group-hover/images:top-3 group-hover/images:rotate-[10deg]">
                     <img
-                        src={images[1]}
+                        src={resolvedImages[1]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
@@ -171,7 +180,7 @@ export function StackedImages({ images }: { images: string[] }) {
                 {/* Middle card */}
                 <div className="myshadow-md absolute top-2 z-20 flex h-24 w-24 items-center justify-center rounded-lg bg-gray-200 transition-all duration-[600ms] group-hover/images:top-0">
                     <img
-                        src={images[0]}
+                        src={resolvedImages[0]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />
@@ -180,7 +189,7 @@ export function StackedImages({ images }: { images: string[] }) {
                 {/* Left card */}
                 <div className="myshadow-md absolute -left-[30%] top-4 z-0 flex h-24 w-24 -rotate-[6deg] items-center justify-center rounded-lg bg-gray-200 transition-all duration-500 group-hover/images:top-3 group-hover/images:-rotate-[8deg]">
                     <img
-                        src={images[2]}
+                        src={resolvedImages[2]}
                         alt=""
                         className="h-full w-full rounded-lg object-cover"
                     />

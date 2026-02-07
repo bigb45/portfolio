@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import ImageOverlay from "@/components/imageOverlay";
+import { getS3Url } from "@/lib/utils";
 export default function Gallery({
     images,
     className,
@@ -12,13 +13,23 @@ export default function Gallery({
     mainImageClassName?: string;
 }) {
     const [showOverlay, setShowOverlay] = useState(false);
-    const [mainImg, setMainImg] = useState(images[0]);
+    const resolvedImages = useMemo(
+        () => images.map((img) => getS3Url(img)),
+        [images],
+    );
+    const [mainImg, setMainImg] = useState(resolvedImages[0]);
+
+    useEffect(() => {
+        if (resolvedImages.length) {
+            setMainImg(resolvedImages[0]);
+        }
+    }, [resolvedImages]);
 
     return (
         <div className={`${className} `}>
             {showOverlay && (
                 <ImageOverlay
-                    images={images}
+                    images={resolvedImages}
                     onClose={() => {
                         setShowOverlay(false);
                     }}
@@ -49,7 +60,7 @@ export default function Gallery({
                                 className="flex min-w-fit justify-center gap-4"
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                {images.map((img, idx) => (
+                                {resolvedImages.map((img, idx) => (
                                     <img
                                         key={idx}
                                         onClick={(e) => setMainImg(img)}

@@ -1,6 +1,7 @@
 "use client";
 import { X } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { getS3Url } from "@/lib/utils";
 
 type Props = {
     images: string[];
@@ -21,7 +22,17 @@ function ImageOverlay({ images, onClose }: Props) {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [onClose]);
-    const [mainImg, setMainImg] = useState(images[0]);
+    const resolvedImages = useMemo(
+        () => images.map((img) => getS3Url(img)),
+        [images],
+    );
+    const [mainImg, setMainImg] = useState(resolvedImages[0]);
+
+    useEffect(() => {
+        if (resolvedImages.length) {
+            setMainImg(resolvedImages[0]);
+        }
+    }, [resolvedImages]);
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
@@ -55,7 +66,7 @@ function ImageOverlay({ images, onClose }: Props) {
                         className="flex justify-center gap-4"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {images.map((img, idx) => (
+                        {resolvedImages.map((img, idx) => (
                             <img
                                 draggable={false}
                                 key={idx}

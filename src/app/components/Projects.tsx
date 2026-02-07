@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import GridItem from "./GridItem";
+import { getS3Url } from "@/lib/utils";
 
 export interface ProjectData {
     id: string;
@@ -77,7 +78,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
                     onClick={() => handleProjectSelection(project.id)}
                 >
                     <img
-                        src={project.imageUrl}
+                        src={getS3Url(project.imageUrl)}
                         alt={project.title}
                         draggable={false}
                         className="h-full w-full object-cover"
@@ -98,7 +99,7 @@ export function Projects({ projects }: { projects: ProjectData[] }) {
                         <GridItem
                             id={selectedId}
                             title={selectedProject!.title}
-                            imageUrl={selectedProject!.imageUrl}
+                            imageUrl={getS3Url(selectedProject!.imageUrl)}
                             subtitle={selectedProject!.subtitle}
                             description={selectedProject!.description}
                             linkIcons={selectedProject!.linkIcons}
