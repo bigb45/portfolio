@@ -27,7 +27,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${inter.className} scroll mx-auto max-w-2xl select-none px-2 font-grotesk lg:max-w-4xl`}
+                className={`${inter.className} scroll mx-auto max-w-2xl px-2 font-grotesk lg:max-w-4xl`}
             >
                 <Header />
                 {children}

@@ -36,6 +36,7 @@ function BreadcrumbNavigation({ className }: { className: string }) {
                     {/* <BreadcrumbSeparator /> */}
                     {segments.map((segment, index) => {
                         const isLastItem = index == segments.length - 1;
+                        const segmentPath = `/${segments.slice(0, index + 1).join("/")}`;
                         return (
                             <Fragment key={segment}>
                                 <BreadcrumbItem>
@@ -46,7 +47,7 @@ function BreadcrumbNavigation({ className }: { className: string }) {
                                     ) : (
                                         <BreadcrumbLink
                                             className="text-[12px] text-gray-400 lg:text-[14px]"
-                                            href={`/${segment}`}
+                                            href={segmentPath}
                                         >
                                             {segment}
                                         </BreadcrumbLink>
