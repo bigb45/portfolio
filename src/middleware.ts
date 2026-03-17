@@ -17,8 +17,19 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
+    if (pathname === "/courses" || pathname.startsWith("/courses/")) {
+      const strippedPath = pathname === "/courses" ? "/" : pathname.replace(/^\/courses/, "") || "/";
+      url.pathname = strippedPath;
+      return NextResponse.redirect(url);
+    }
+
     url.pathname = pathname === "/" ? "/courses" : `/courses${pathname}`;
     return NextResponse.rewrite(url);
+  }
+
+  if (pathname === "/courses" || pathname.startsWith("/courses/")) {
+    url.pathname = "/";
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();
