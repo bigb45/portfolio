@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getSiteUrl } from "@/lib/site";
+import { getSitemapOrigin } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 export default function robots(): MetadataRoute.Robots {
-    const origin = getSiteUrl().replace(/\/+$/, "");
+    const origin = getSitemapOrigin().replace(/\/+$/, "");
     return {
         rules: [
             {

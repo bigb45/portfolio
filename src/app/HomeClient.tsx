@@ -31,7 +31,8 @@ export default function HomeClient() {
                             className="mt-2 inline-block"
                         >
                             Mohammed
-                        </span>
+                        </span>{" "}
+                        Natour
                     </h1>
 
                     <p className="mt-4 max-w-prose text-xl text-gray-800">

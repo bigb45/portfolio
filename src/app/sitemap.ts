@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrlWithBase, getSitemapOrigin } from "@/lib/site";
 import { getChallenges, getChaptersByChallenge } from "@/lib/courses";
 
-export const revalidate = 3600;
+/** Per-request sitemap so URLs match the host that serves /sitemap.xml (see getSitemapOrigin). */
+export const dynamic = "force-dynamic";
 
-function staticEntries(): MetadataRoute.Sitemap {
+function staticEntries(origin: string): MetadataRoute.Sitemap {
     const paths = [
         "/",
         "/blog/",
@@ -18,7 +19,7 @@ function staticEntries(): MetadataRoute.Sitemap {
     ];
     const now = new Date();
     return paths.map((path) => ({
-        url: absoluteUrl(path),
+        url: absoluteUrlWithBase(origin, path),
         lastModified: now,
         changeFrequency: path === "/" ? "weekly" : "monthly",
         priority: path === "/" ? 1 : 0.7,
@@ -26,7 +27,8 @@ function staticEntries(): MetadataRoute.Sitemap {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const entries: MetadataRoute.Sitemap = [...staticEntries()];
+    const origin = getSitemapOrigin();
+    const entries: MetadataRoute.Sitemap = [...staticEntries(origin)];
     const now = new Date();
 
     try {
@@ -44,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
         for (const p of projects) {
             entries.push({
-                url: absoluteUrl(`/projects/${p.id}/`),
+                url: absoluteUrlWithBase(origin, `/projects/${p.id}/`),
                 lastModified: p.startTime ?? now,
                 changeFrequency: "monthly",
                 priority: 0.8,
@@ -52,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
         for (const b of publicBlogs) {
             entries.push({
-                url: absoluteUrl(`/blog/${b.slug}/`),
+                url: absoluteUrlWithBase(origin, `/blog/${b.slug}/`),
                 lastModified: b.publishDate,
                 changeFrequency: "monthly",
                 priority: 0.75,
@@ -60,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
         for (const c of publicCaseStudies) {
             entries.push({
-                url: absoluteUrl(`/case-studies/${c.id}/`),
+                url: absoluteUrlWithBase(origin, `/case-studies/${c.id}/`),
                 lastModified: c.publishDate,
                 changeFrequency: "monthly",
                 priority: 0.75,
@@ -74,7 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const challenges = await getChallenges();
         for (const ch of challenges) {
             entries.push({
-                url: absoluteUrl(`/courses/${ch.sourceId}/`),
+                url: absoluteUrlWithBase(origin, `/courses/${ch.sourceId}/`),
                 lastModified: now,
                 changeFrequency: "monthly",
                 priority: 0.65,
@@ -82,7 +84,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             const chapters = await getChaptersByChallenge(ch.sourceId);
             for (const chapter of chapters) {
                 entries.push({
-                    url: absoluteUrl(
+                    url: absoluteUrlWithBase(
+                        origin,
                         `/courses/${ch.sourceId}/${chapter.sourceId}/`,
                     ),
                     lastModified: now,
