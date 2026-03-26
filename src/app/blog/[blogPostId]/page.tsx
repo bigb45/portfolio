@@ -1,78 +1,107 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Loading from "@/app/loading";
-import { AnimatePresence, motion } from "framer-motion";
-import BlogComponent from "./blog";
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import BlogPostClient from "./BlogPostClient";
+import type { BlogObject } from "@/app/blog/blog-types";
+import { getSiteUrl } from "@/lib/site";
 
-export interface BlogObject {
+type Props = {
+    params: { blogPostId: string };
+};
+
+function toBlogObject(row: {
     blogTitle: string;
     blogText: string;
     blogSubtitle: string;
     publishDate: Date;
-    category: string;
+    category: string | null;
+}): BlogObject {
+    return {
+        blogTitle: row.blogTitle,
+        blogText: row.blogText,
+        blogSubtitle: row.blogSubtitle,
+        publishDate: row.publishDate,
+        category: row.category,
+    };
 }
 
-function BlogPage() {
-    const [blog, setBlog] = useState<BlogObject | null>();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    useEffect(() => {
-        const blogId = window.location.pathname;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const blog = await prisma.blog.findUnique({
+        where: { slug: params.blogPostId },
+        select: {
+            blogTitle: true,
+            blogSubtitle: true,
+            blogText: true,
+            slug: true,
+        },
+    });
+    if (!blog) {
+        return { title: "Blog post" };
+    }
+    const description =
+        blog.blogSubtitle?.trim() ||
+        blog.blogText.slice(0, 160).replace(/\s+/g, " ").trim() ||
+        blog.blogTitle;
+    return {
+        title: blog.blogTitle,
+        description,
+        alternates: { canonical: `/blog/${blog.slug}/` },
+        openGraph: {
+            title: blog.blogTitle,
+            description,
+            type: "article",
+            url: `/blog/${blog.slug}/`,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blog.blogTitle,
+            description,
+        },
+    };
+}
 
-        const fetchBlog = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(`/api${blogId}`);
-                if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-                const data = await res.json();
-                console.log({ data });
-                setBlog(data);
-            } catch (e: unknown) {
-                if (e instanceof Error) {
-                    setError(e.message);
-                } else {
-                    setError("An unknown error occurred");
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
+export default async function Page({ params }: Props) {
+    const row = await prisma.blog.findUnique({
+        where: { slug: params.blogPostId },
+        select: {
+            blogTitle: true,
+            blogText: true,
+            blogSubtitle: true,
+            publishDate: true,
+            category: true,
+            slug: true,
+        },
+    });
+    if (!row) notFound();
 
-        fetchBlog();
-    }, []);
+    const blog = toBlogObject(row);
+    const site = getSiteUrl();
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: blog.blogTitle,
+        description: blog.blogSubtitle,
+        datePublished: blog.publishDate.toISOString(),
+        author: {
+            "@type": "Person",
+            name: "Mohammed Natour",
+            url: site,
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${site.replace(/\/+$/, "")}/blog/${row.slug}/`,
+        },
+    };
 
     return (
-        <div className="items-center overflow-hidden">
-            <AnimatePresence mode="wait">
-                {loading ? (
-                    <motion.div
-                        className="h-screen"
-                        key="loader"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <Loading />
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="blog"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        {error ? (
-                            <p>Something went wrong: {error}</p>
-                        ) : (
-                            <BlogComponent {...blog!} />
-                        )}
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(articleJsonLd),
+                }}
+            />
+            <BlogPostClient initialBlog={blog} />
+        </>
     );
 }
-
-export default BlogPage;

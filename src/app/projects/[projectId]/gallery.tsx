@@ -7,10 +7,13 @@ export default function Gallery({
     images,
     className,
     mainImageClassName = "",
+    imageDescription,
 }: {
     images: string[];
     className: string;
     mainImageClassName?: string;
+    /** Used for accessible image labels (e.g. project title). */
+    imageDescription?: string;
 }) {
     const [showOverlay, setShowOverlay] = useState(false);
     const resolvedImages = useMemo(
@@ -51,7 +54,11 @@ export default function Gallery({
                                 draggable={false}
                                 className="w-full rounded-[16px] object-contain shadow-lg"
                                 src={mainImg}
-                                alt="main"
+                                alt={
+                                    imageDescription
+                                        ? `${imageDescription} — main preview`
+                                        : "Project preview"
+                                }
                             />
                         </div>
                         {/* Thumbnail Images */}
@@ -71,7 +78,11 @@ export default function Gallery({
                                                 : ""
                                         }`}
                                         src={img}
-                                        alt={`thumb-${idx}`}
+                                        alt={
+                                            imageDescription
+                                                ? `${imageDescription} — image ${idx + 1}`
+                                                : `Gallery image ${idx + 1}`
+                                        }
                                     />
                                 ))}
                             </div>

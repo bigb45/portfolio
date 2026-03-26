@@ -1,7 +1,5 @@
-import { prisma } from "@/lib/prisma";
 import React from "react";
-import { BlogObject } from "./page";
-import { BlogListItemProps } from "@/app/components/BlogItem";
+import type { BlogObject } from "@/app/blog/blog-types";
 import { formatDate } from "@/app/utils";
 
 export default function BlogComponent({
@@ -13,9 +11,11 @@ export default function BlogComponent({
 }: BlogObject) {
     return (
         <div className="mx-auto flex max-w-3xl flex-col items-center justify-center gap-4 px-4 py-8">
-            <div className="w-fit rounded-full bg-gray-200 px-3 py-0.5 font-medium text-[#374151]">
-                {category}
-            </div>
+            {category ? (
+                <div className="w-fit rounded-full bg-gray-200 px-3 py-0.5 font-medium text-[#374151]">
+                    {category}
+                </div>
+            ) : null}
 
             <div>
                 <h1 className="mb-2 text-center text-4xl font-bold lg:text-6xl">

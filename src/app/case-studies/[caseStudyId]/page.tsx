@@ -1,64 +1,107 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import CaseStudy, { CaseStudyProps } from "./CaseStudy";
-import Loading from "../../loading";
-import { useRouter } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import CaseStudyPageClient from "./CaseStudyPageClient";
+import type { CaseStudyProps } from "./CaseStudy";
+import { getSiteUrl } from "@/lib/site";
 
-function CaseStudyPage() {
-    const [caseStudy, setCaseStudy] = useState<CaseStudyProps | null>();
-    const [loading, setLoading] = useState(true);
+type Props = {
+    params: { caseStudyId: string };
+};
 
-    useEffect(() => {
-        const caseStudyId = window.location.pathname;
-        console.log({ caseStudyId });
-        setLoading(true);
-        fetch(`/api/${caseStudyId}`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("case study id:", caseStudyId);
-                console.log("Case study", { data });
-                setCaseStudy(data);
-                setLoading(false);
-            });
-    }, []);
-
-    const router = useRouter();
-
-    return (
-        <div className="items-center overflow-hidden">
-            <AnimatePresence mode="wait">
-                {loading ? (
-                    <motion.div
-                        className="h-screen"
-                        key="loader"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <Loading />
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="case-study"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <CaseStudy
-                            {...caseStudy!}
-                            onBack={() => {
-                                // TODO: move this to a constants.ts file
-                                router.push("/case-studies");
-                            }}
-                        />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
-    );
+function toCaseStudyProps(row: {
+    title: string;
+    studyContent: string;
+    subtitle: string | null;
+    publishDate: Date;
+    category: string | null;
+}): CaseStudyProps {
+    return {
+        title: row.title,
+        studyContent: row.studyContent,
+        subtitle: row.subtitle ?? "",
+        publishDate: row.publishDate,
+        category: row.category ?? "",
+    };
 }
 
-export default CaseStudyPage;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const cs = await prisma.case_study.findUnique({
+        where: { id: params.caseStudyId },
+        select: {
+            title: true,
+            subtitle: true,
+            description: true,
+            studyContent: true,
+        },
+    });
+    if (!cs) {
+        return { title: "Case study" };
+    }
+    const description =
+        cs.subtitle?.trim() ||
+        cs.description.slice(0, 160) ||
+        cs.studyContent.slice(0, 160).replace(/\s+/g, " ").trim() ||
+        cs.title;
+    return {
+        title: cs.title,
+        description,
+        alternates: { canonical: `/case-studies/${params.caseStudyId}/` },
+        openGraph: {
+            title: cs.title,
+            description,
+            type: "article",
+            url: `/case-studies/${params.caseStudyId}/`,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: cs.title,
+            description,
+        },
+    };
+}
+
+export default async function Page({ params }: Props) {
+    const row = await prisma.case_study.findUnique({
+        where: { id: params.caseStudyId },
+        select: {
+            title: true,
+            studyContent: true,
+            subtitle: true,
+            publishDate: true,
+            category: true,
+        },
+    });
+    if (!row) notFound();
+
+    const props = toCaseStudyProps(row);
+    const site = getSiteUrl();
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: props.title,
+        description: props.subtitle || undefined,
+        datePublished: props.publishDate.toISOString(),
+        author: {
+            "@type": "Person",
+            name: "Mohammed Natour",
+            url: site,
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${site.replace(/\/+$/, "")}/case-studies/${params.caseStudyId}/`,
+        },
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(articleJsonLd),
+                }}
+            />
+            <CaseStudyPageClient initialCaseStudy={props} />
+        </>
+    );
+}

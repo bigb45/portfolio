@@ -29,7 +29,7 @@ function BlogListItem({
         <div>
             <div className="divider h-[1px] w-full bg-gray-200"></div>
             <div className="group py-4">
-                <Link href={`${slug}`}>
+                <Link href={`/blog/${slug}/`}>
                     <div className="w-full rounded-lg p-4 transition-all duration-200 group-hover:bg-gray-100">
                         <div className="flex justify-between">
                             {" "}

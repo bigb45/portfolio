@@ -5,7 +5,7 @@ import CaseStudyFooter from "./CaseStudyFooter";
 import { InteractiveImage } from "@/app/components/InteractiveImage";
 import ArrowIcon from "@/assets/icons/arrow_thin.svg";
 import { ArrowLeft } from "lucide-react";
-import { on } from "events";
+
 export interface CaseStudyProps {
     title: string;
     studyContent: string;

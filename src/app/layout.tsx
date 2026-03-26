@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import React from "react";
+import { getSiteUrl } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"] });
 const grotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -11,11 +12,35 @@ const w95fa = localFont({
     src: "../../public/fonts/w95fa.woff2",
     variable: "--font-surt-bold",
 });
+
+const siteDescription =
+    "Mohammed Natour — mobile app developer and designer. Portfolio, projects, case studies, and blog.";
+
 export const metadata: Metadata = {
-    title: "Mohammed Natour",
-    description: "",
+    metadataBase: new URL(getSiteUrl()),
+    title: {
+        default: "Mohammed Natour",
+        template: "%s | Mohammed Natour",
+    },
+    description: siteDescription,
     icons: {
         icon: "/favicon.ico",
+    },
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        siteName: "Mohammed Natour",
+        title: "Mohammed Natour",
+        description: siteDescription,
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Mohammed Natour",
+        description: siteDescription,
+    },
+    robots: {
+        index: true,
+        follow: true,
     },
 };
 

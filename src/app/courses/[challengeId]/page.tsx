@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getChallenge, getChaptersByChallenge } from "@/lib/courses";
 
 export const dynamic = "force-dynamic";
@@ -9,6 +10,27 @@ type Props = {
   };
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const challenge = await getChallenge(params.challengeId);
+    const title = challenge?.title ?? params.challengeId;
+    const description =
+      challenge?.description?.slice(0, 160) ?? `Course: ${title}`;
+    return {
+      title,
+      description,
+      alternates: { canonical: `/courses/${params.challengeId}/` },
+      openGraph: {
+        title,
+        description,
+        url: `/courses/${params.challengeId}/`,
+      },
+    };
+  } catch {
+    return { title: params.challengeId };
+  }
+}
+
 export default async function ChallengePage({ params }: Props) {
   try {
     const [challenge, chapters] = await Promise.all([
@@ -18,7 +40,7 @@ export default async function ChallengePage({ params }: Props) {
 
     return (
       <main className="mx-auto max-w-5xl p-6">
-        <Link href="/courses" className="text-sm underline">
+        <Link href="/courses/" className="text-sm underline">
           ← Back to courses
         </Link>
         <h1 className="mt-2 text-3xl font-bold">{challenge?.title ?? params.challengeId}</h1>
@@ -28,7 +50,7 @@ export default async function ChallengePage({ params }: Props) {
           {chapters.map((chapter) => (
             <Link
               key={chapter._id}
-              href={`/courses/${params.challengeId}/${chapter.sourceId}`}
+              href={`/courses/${params.challengeId}/${chapter.sourceId}/`}
               className="rounded-xl border p-4 hover:bg-neutral-50 dark:hover:bg-neutral-900"
             >
               <h2 className="text-lg font-semibold">{chapter.title}</h2>

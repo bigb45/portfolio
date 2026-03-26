@@ -14,7 +14,7 @@ export default async function CoursesPage() {
           {challenges.map((challenge) => (
             <Link
               key={challenge._id}
-              href={`/courses/${challenge.sourceId}`}
+              href={`/courses/${challenge.sourceId}/`}
               className="rounded-xl border p-4 hover:bg-neutral-50 dark:hover:bg-neutral-900"
             >
               <h2 className="text-xl font-semibold">{challenge.title}</h2>

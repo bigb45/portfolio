@@ -75,7 +75,7 @@ function Projects() {
                                     key={project.id}
                                     {...project}
                                     onShowImagesClick={() => {}}
-                                    href={`${project.id}`}
+                                    href={`/projects/${project.id}/`}
                                 />
                             ))}
                         </motion.div>

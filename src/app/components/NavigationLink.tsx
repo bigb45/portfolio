@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const NavigationLinks = ({ className = "", linkClassName = "" }) => {
     const links = [
-        { href: "/blog", label: "Blog" },
-        { href: "/case-studies", label: "Case studies" },
-        { href: "/projects", label: "Projects" },
+        { href: "/blog/", label: "Blog" },
+        { href: "/case-studies/", label: "Case studies" },
+        { href: "/projects/", label: "Projects" },
         { href: "/", label: "Secret" },
     ];
 

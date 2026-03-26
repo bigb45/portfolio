@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getPostsByChapter } from "@/lib/courses";
+import type { Metadata } from "next";
+import { getChaptersByChallenge, getChallenge, getPostsByChapter } from "@/lib/courses";
 
 export const dynamic = "force-dynamic";
 
@@ -14,17 +15,49 @@ function looksLikeHtml(value?: string) {
   return Boolean(value && /<[^>]+>/.test(value));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const [challenge, chapters] = await Promise.all([
+      getChallenge(params.challengeId),
+      getChaptersByChallenge(params.challengeId),
+    ]);
+    const chapter = chapters.find((c) => c.sourceId === params.chapterId);
+    const chapterTitle = chapter?.title ?? params.chapterId;
+    const challengeTitle = challenge?.title ?? params.challengeId;
+    const description = `${challengeTitle} — ${chapterTitle}`;
+    return {
+      title: `${challengeTitle} — ${chapterTitle}`,
+      description: description.slice(0, 160),
+      alternates: {
+        canonical: `/courses/${params.challengeId}/${params.chapterId}/`,
+      },
+      openGraph: {
+        title: `${challengeTitle} — ${chapterTitle}`,
+        description: description.slice(0, 160),
+        url: `/courses/${params.challengeId}/${params.chapterId}/`,
+      },
+    };
+  } catch {
+    return { title: params.chapterId };
+  }
+}
+
 export default async function ChapterPage({ params }: Props) {
   try {
-    const posts = await getPostsByChapter(params.challengeId, params.chapterId);
+    const [posts, chapters] = await Promise.all([
+      getPostsByChapter(params.challengeId, params.chapterId),
+      getChaptersByChallenge(params.challengeId),
+    ]);
+    const chapter = chapters.find((c) => c.sourceId === params.chapterId);
+    const chapterTitle = chapter?.title ?? params.chapterId;
 
     return (
       <main className="mx-auto max-w-5xl p-6">
-        <Link href={`/courses/${params.challengeId}`} className="text-sm underline">
+        <Link href={`/courses/${params.challengeId}/`} className="text-sm underline">
           ← Back to chapters
         </Link>
 
-        <h1 className="mb-6 mt-2 text-3xl font-bold">{params.chapterId}</h1>
+        <h1 className="mb-6 mt-2 text-3xl font-bold">{chapterTitle}</h1>
 
         <div className="space-y-6">
           {posts.map((post) => (

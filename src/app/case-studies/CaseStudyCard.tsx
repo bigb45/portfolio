@@ -23,7 +23,7 @@ function CaseStudyCard({
         <div className="group relative flex w-full justify-center">
             {/* card */}
             <Link
-                href={id}
+                href={`/case-studies/${id}/`}
                 className="ml-auto flex w-full items-end justify-between rounded-xl border border-[#D9D9D9] p-4"
             >
                 {/* Title */}
