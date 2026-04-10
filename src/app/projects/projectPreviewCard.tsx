@@ -3,6 +3,7 @@ import ArrowIcon from "@/assets/icons/arrow_thin.svg";
 import Link from "next/link";
 import { ProjectProps } from "./projectCard";
 import { getS3Url } from "@/lib/utils";
+import { Code, Layers, Smartphone } from "lucide-react";
 
 function ProjectPreviewCard({
     id,
@@ -35,12 +36,8 @@ function ProjectPreviewCard({
             <p className="mb-4 w-full pb-6 text-center text-[28px] font-semibold">
                 {title}
             </p>
-            {resolvedImages.length >= 3 && (
-                <div
-                    className="group/parent relative mx-auto mb-8 h-[140px] w-fit cursor-pointer"
-                    // onClick={onShowImagesClick}
-                    // href={href}
-                >
+            {resolvedImages.length >= 3 ? (
+                <div className="group/parent relative mx-auto mb-8 h-[140px] w-fit cursor-pointer">
                     {/* Left image */}
                     <img
                         draggable={false}
@@ -62,6 +59,41 @@ function ProjectPreviewCard({
                         src={resolvedImages[2]}
                         alt=""
                     />
+                </div>
+            ) : (
+                <div className="group/parent relative mx-auto mb-8 flex h-[140px] w-[280px] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-200 shadow-inner">
+                    <div className="absolute inset-0 opacity-10">
+                        <svg width="100%" height="100%">
+                            <pattern
+                                id="grid"
+                                width="20"
+                                height="20"
+                                patternUnits="userSpaceOnUse"
+                            >
+                                <path
+                                    d="M 20 0 L 0 0 0 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="1"
+                                />
+                            </pattern>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+                        </svg>
+                    </div>
+                    <div className="flex gap-4 text-slate-400">
+                        <Code
+                            size={48}
+                            className="transition-transform duration-500 group-hover/parent:-rotate-12 group-hover/parent:scale-110"
+                        />
+                        <Smartphone
+                            size={48}
+                            className="transition-transform duration-500 group-hover/parent:translate-y-[-4px] group-hover/parent:scale-110"
+                        />
+                        <Layers
+                            size={48}
+                            className="transition-transform duration-500 group-hover/parent:rotate-12 group-hover/parent:scale-110"
+                        />
+                    </div>
                 </div>
             )}
             <div className="mb-6 text-[18px] font-normal leading-normal text-[#4D4D4D]">

@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import CaseStudyCard, { CaseStudyCardProps } from "./CaseStudyCard";
 import { AnimatePresence, motion } from "framer-motion";
-import Loading from "../loading";
+import LoadingView from "@/components/ui/loadingView";
+import EmptyState from "@/components/ui/emptyState";
 
 function CaseStudies() {
     const [caseStudies, setCaseStudies] = useState<CaseStudyCardProps[] | null>(
@@ -31,24 +32,23 @@ function CaseStudies() {
                 {loading ? (
                     <motion.div
                         key="loading"
-                        className="flex h-64 items-center justify-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <Loading />
+                        <LoadingView />
                     </motion.div>
                 ) : !caseStudies || caseStudies.length === 0 ? (
                     <motion.div
                         key="empty"
-                        className="flex flex-1 flex-col items-center justify-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <motion.p className="flex-1 text-center text-3xl text-gray-500">
-                            No Case Studies found.
-                        </motion.p>
+                        <EmptyState
+                            title="No Case Studies"
+                            message="I'm still analyzing my best work. Stay tuned for some deep dives!"
+                        />
                     </motion.div>
                 ) : (
                     <motion.div

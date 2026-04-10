@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { ProjectProps } from "./projectCard";
 import { AnimatePresence, motion } from "framer-motion";
-import Loading from "../loading";
+import LoadingView from "@/components/ui/loadingView";
+import EmptyState from "@/components/ui/emptyState";
 import ProjectPreviewCard from "./projectPreviewCard";
 import ClickEffect from "@/components/clickMarker";
 
@@ -42,24 +43,23 @@ function Projects() {
                     {isLoading ? (
                         <motion.div
                             key="loading"
-                            className="flex h-full items-center justify-center"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                         >
-                            <Loading />
+                            <LoadingView />
                         </motion.div>
                     ) : !projects || projects.length === 0 ? (
                         <motion.div
                             key="empty"
-                            className="flex flex-1 flex-col items-center justify-center"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                         >
-                            <motion.p className="flex-1 text-center text-3xl text-gray-500">
-                                No Projects found.
-                            </motion.p>
+                            <EmptyState
+                                title="No Projects Yet"
+                                message="I'm busy building something amazing. Come back later to see it!"
+                            />
                         </motion.div>
                     ) : (
                         <motion.div

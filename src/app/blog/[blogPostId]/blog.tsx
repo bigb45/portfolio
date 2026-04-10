@@ -1,6 +1,8 @@
 import React from "react";
 import type { BlogObject } from "@/app/blog/blog-types";
 import { formatDate } from "@/app/utils";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function BlogComponent({
     blogText,
@@ -30,10 +32,11 @@ export default function BlogComponent({
             </p>
 
             <div className="mt-6 w-full">
-                <p className="prose max-w-none text-justify text-base leading-7 text-gray-800 lg:text-lg">
-                    {blogText}
-                </p>
-                {/* <Markdown>*hello* hello</Markdown> */}
+                <div className="prose prose-slate max-w-none text-justify text-base leading-7 text-gray-800 lg:text-lg prose-headings:mb-4 prose-headings:mt-8 prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:mb-4 prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-img:rounded-xl prose-a:text-blue-600 hover:prose-a:underline">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {blogText}
+                    </ReactMarkdown>
+                </div>
             </div>
         </div>
     );

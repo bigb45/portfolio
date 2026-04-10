@@ -3,13 +3,13 @@ import HomeClient from "./HomeClient";
 import { getSiteUrl } from "@/lib/site";
 
 const description =
-    "Mohammed Natour — mobile app developer and designer. Portfolio, projects, case studies, and blog.";
+    "Mohammed Natour — Expert Mobile App Developer & UI/UX Designer. Specialized in high-performance mobile apps with Flutter, Jetpack Compose, and React Native.";
 
 export const metadata: Metadata = {
     description,
     alternates: { canonical: "/" },
     openGraph: {
-        title: "Mohammed Natour",
+        title: "Mohammed Natour | Mobile App Developer & Designer",
         description,
         url: "/",
         type: "website",
