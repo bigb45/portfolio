@@ -14,12 +14,26 @@ const w95fa = localFont({
 });
 
 const siteDescription =
-    "Mohammed Natour — mobile app developer and designer. Portfolio, projects, case studies, and blog.";
+    "Mohammed Natour — Expert Mobile App Developer & UI/UX Designer specialized in Flutter, React Native, and Jetpack Compose. Explore my portfolio, projects, and insights on app development.";
 
 export const metadata: Metadata = {
     metadataBase: new URL(getSiteUrl()),
+    keywords: [
+        "Mohammed Natour",
+        "Mobile App Developer",
+        "App Development",
+        "Flutter Developer",
+        "React Native Developer",
+        "Jetpack Compose",
+        "Android Developer",
+        "iOS Developer",
+        "UI/UX Design",
+        "Figma Designer",
+        "Mobile Development Specialist",
+        "Software Engineer Portfolio",
+    ],
     title: {
-        default: "Mohammed Natour",
+        default: "Mohammed Natour | Mobile App Developer & Designer",
         template: "%s | Mohammed Natour",
     },
     description: siteDescription,

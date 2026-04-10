@@ -3,7 +3,8 @@ import React, { Suspense, useEffect, useState } from "react";
 import BlogList from "./blogList";
 import BlogListItem, { BlogListItemProps } from "../components/BlogItem";
 import { motion, AnimatePresence } from "framer-motion";
-import Loading from "../loading";
+import LoadingView from "@/components/ui/loadingView";
+import EmptyState from "@/components/ui/emptyState";
 
 function BlogPage() {
     const [blogs, setBlogs] = useState<BlogListItemProps[] | null>(null);
@@ -37,24 +38,23 @@ function BlogPage() {
                 {loading ? (
                     <motion.div
                         key="loading"
-                        className="flex h-64 items-center justify-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <Loading />
+                        <LoadingView />
                     </motion.div>
                 ) : !blogs || blogs.length === 0 ? (
                     <motion.div
                         key="empty"
-                        className="flex flex-1 flex-col items-center justify-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
-                        <motion.p className="flex-1 text-center text-3xl text-gray-500">
-                            No Blogs found.{" "}
-                        </motion.p>
+                        <EmptyState
+                            title="No Blog Posts"
+                            message="The ink hasn't touched the paper yet. Check back soon!"
+                        />
                     </motion.div>
                 ) : (
                     <motion.div
