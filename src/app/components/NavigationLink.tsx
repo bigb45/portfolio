@@ -16,7 +16,7 @@ const NavigationLinks = ({ className = "", linkClassName = "" }) => {
         { href: "/blog/", label: "Blog" },
         { href: "/case-studies/", label: "Case studies" },
         { href: "/projects/", label: "Projects" },
-        { href: "/", label: "Secret" },
+        { href: "/secret/", label: "Secret" },
     ];
 
     return (
