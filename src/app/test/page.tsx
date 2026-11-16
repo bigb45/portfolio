@@ -194,7 +194,7 @@ function Page() {
                     >
                         {projectDates.map((projectDate, index) => {
                             return (
-                                <div></div>
+                                <div key={index}></div>
                                 // <ProjectCard
                                 //     key={index}
                                 //     id={""}
