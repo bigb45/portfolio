@@ -37,6 +37,7 @@ next-env.d.ts
 /dist/
 
 *storybook.log
+dev_server.log
 .env
 
 /generated
