@@ -21,7 +21,7 @@ export default function HomeClient() {
 
     return (
         <div className="relative flex w-full justify-center">
-            <main className="flex w-full max-w-[calc(100%-240px)] flex-col items-center justify-start px-6">
+            <main className="flex w-full flex-col items-center justify-start px-6">
                 <div className="mt-24 text-center lg:text-left">
                     <h1 className="text-4xl font-bold leading-10 text-[#0F172A] sm:text-5xl md:text-6xl">
                         Hello, I&apos;m{" "}
@@ -35,13 +35,17 @@ export default function HomeClient() {
                         Natour
                     </h1>
 
-                    <p className="mt-4 max-w-prose text-xl text-gray-800">
-                        I develop mobile apps and create designs on Figma
-                        sometimes.
+                    <p className="mt-5 max-w-prose text-lg text-gray-800">
+                        I make mobile apps, mostly. Sometimes I open Figma
+                        first, sometimes I just start typing and fix it later.
+                    </p>
+                    <p className="mt-3 max-w-prose text-lg text-gray-800">
+                        I like the small details nobody asks for. Most of what
+                        I know, I learned by breaking something.
                     </p>
                 </div>
 
-                <div className="mb-12 mt-24 flex w-full items-center justify-center gap-14">
+                <div className="mb-12 mt-16 flex w-full items-center justify-center gap-14">
                     <Link
                         className="flex gap-2 decoration-red-400 underline-offset-8 hover:underline"
                         href={`${process.env.NEXT_PUBLIC_LINKEDIN_URL}`}

@@ -79,3 +79,13 @@ model case_study {
   color             String?
   tech_stack        String[]
 }
+
+model contactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_message")
+}

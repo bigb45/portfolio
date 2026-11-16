@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import React from "react";
 import { getSiteUrl } from "@/lib/site";
 
@@ -66,10 +67,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${inter.className} scroll mx-auto max-w-2xl px-2 font-grotesk lg:max-w-4xl`}
+                className={`${inter.className} overflow-x-hidden font-grotesk`}
             >
-                <Header />
-                {children}
+                <div className="scroll mx-auto max-w-2xl px-2 lg:max-w-4xl">
+                    <Header />
+                    {children}
+                </div>
+                <Footer />
             </body>
         </html>
     );

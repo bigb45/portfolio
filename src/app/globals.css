@@ -4,18 +4,14 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb:
-        0, 0,
-        0
-            /* --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255; */
-            --website-background: 248,
-        250, 252;
+    --foreground-rgb: 0, 0, 0;
+    --website-background: 248, 250, 252;
 }
 
 body {
     background: rgb(var(--website-background));
     scrollbar-gutter: stable;
+    color: #0f172a;
 }
 
 /* @layer utilities {

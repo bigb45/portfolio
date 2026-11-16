@@ -31,7 +31,7 @@ function Projects() {
     return (
         <>
             <ClickEffect />
-            <div className="relative mb-10 mt-20 flex h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
+            <div className="relative mb-10 mt-20 flex min-h-[calc(100vh-8rem)] flex-col gap-3 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl lg:mt-40">
                 {/* {!projects || projects.length === 0 ? "" : "Projects:"} */}
                 {projects && projects.length !== 0 && (
                     <div className="mb-10 text-4xl font-bold text-[#0F172A] sm:text-5xl md:text-6xl">

@@ -31,7 +31,7 @@ function ProjectPreviewCard({
     return (
         <Link
             href={href}
-            className="flex h-[360px] w-full max-w-[400px] flex-col items-center justify-between rounded-xl border border-[#D9D9D9] p-3"
+            className="flex min-h-[360px] w-full max-w-[400px] flex-col items-center justify-between rounded-xl border border-[#D9D9D9] p-3"
         >
             <p className="mb-4 w-full pb-6 text-center text-[28px] font-semibold">
                 {title}
