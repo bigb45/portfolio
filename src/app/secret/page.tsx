@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, ShieldAlert, Lock, Unlock, Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function SecretPage() {
     const [accessGranted, setAccessGranted] = useState(false);
@@ -113,7 +114,13 @@ export default function SecretPage() {
                             />
                         </div>
 
-                        <div className="mt-8 flex justify-center">
+                        <div className="mt-8 flex flex-col items-center gap-4">
+                            <Link
+                                href="/haijaneh/"
+                                className="text-xs tracking-widest text-[#00FF41] underline-offset-4 hover:underline"
+                            >
+                                HAIJANEH OR EGG
+                            </Link>
                             <button
                                 onClick={() => setAccessGranted(false)}
                                 className="border border-[#00FF41] px-4 py-2 text-xs transition-colors hover:bg-[#00FF41] hover:text-black"
